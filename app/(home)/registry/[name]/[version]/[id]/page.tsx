@@ -28,10 +28,11 @@ type PageProps = {
 
 const getTask = async ({ id }: { id: string }) => {
   const supabase = await createClient();
-  const { data: tasks, error } = await supabase
+  const { data: task, error } = await supabase
     .from("task")
     .select("*")
-    .eq("id", parseInt(id));
+    .eq("id", parseInt(id))
+    .single();
 
   if (error) {
     console.error("Supabase error:", error);
@@ -39,8 +40,8 @@ const getTask = async ({ id }: { id: string }) => {
     throw new Error(error.message);
   }
 
-  console.log("Task fetched successfully:", tasks[0]);
-  return tasks;
+  console.log("Task fetched successfully:", task);
+  return task;
 };
 
 
