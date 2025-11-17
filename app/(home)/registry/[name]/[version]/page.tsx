@@ -22,7 +22,7 @@ export default async function Dataset({
   const supabase = await createClient();
 
   const { data: tasks, error } = await supabase
-    .from("task-example")
+    .from("task")
     .select("*");
 
   if (error) {

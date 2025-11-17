@@ -5,7 +5,7 @@ import { Tables } from "@/lib/supabase/database.types";
 import { CopyButton } from "./copy-button";
 
 type TaskCardProps = {
-  task: Tables<"task-example">;
+  task: Tables<"task">;
   behavior?: "filter" | "navigate";
 };
 
@@ -14,8 +14,14 @@ export function TaskCard({ task, behavior }: TaskCardProps) {
   const taskName = task["task-name"] ?? `Task ${task.id}`;
   const description = task["task-description"];
 
+  // For task, use fixed dataset values
+  // TODO: Add dataset_name and dataset_version columns to task table
+  const datasetName = "FrontierCS";
+  const datasetVersion = "1.0";
+  const taskId = task["id"].toString();
+
   return (
-    <GridItem href="#">
+    <GridItem href={`/registry/${datasetName}/${datasetVersion}/${taskId}`}>
       <div className="flex min-h-[280px] flex-1 flex-col justify-between gap-6 py-6">
         <CardHeader className="space-y-4">
           <div className="mb-2 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">

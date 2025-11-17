@@ -26,42 +26,27 @@ type PageProps = {
   searchParams: Promise<SearchParams>;
 };
 
-const getTask = unstable_cache(
-  async ({
-    id,
-    name,
-    version,
-  }: {
-    id: string;
-    name: string;
-    version: string;
-  }) => {
-    const supabase = await createClient();
+const getTask = async ({ id }: { id: string }) => {
+  const supabase = await createClient();
+  const { data: tasks, error } = await supabase
+    .from("task")
+    .select("*")
+    .eq("id", parseInt(id));
 
-    const { data, error } = await supabase
-      .from("task")
-      .select("*, registry!inner(*)")
-      .eq("id", id)
-      .eq("dataset_name", name)
-      .eq("dataset_version", version)
-      .single();
+  if (error) {
+    console.error("Supabase error:", error);
+    console.error("Error details:", JSON.stringify(error, null, 2));
+    throw new Error(error.message);
+  }
 
-    if (error) {
-      throw new Error(error.message);
-    }
+  console.log("Task fetched successfully:", tasks[0]);
+  return tasks;
+};
 
-    return data;
-  },
-  ["task"],
-  {
-    revalidate: 3600,
-    tags: ["task"],
-  },
-);
 
 export default async function Task({ params }: PageProps) {
   const { id, name, version } = await params;
-  const task = await getTask({ id, name, version });
+  const task = await getTask({ id });
 
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-6 sm:pt-12">
@@ -88,34 +73,15 @@ export default async function Task({ params }: PageProps) {
           </BreadcrumbList>
         </Breadcrumb>
         <TaskHeader
-          id={id}
-          githubUrl={buildTaskGithubUrl({
-            dataset: task.registry,
-            taskId: task.registry.is_encrypted ? `${task.id}.zip` : task.id,
-          })}
-          category={task.category}
-          difficulty={task.difficulty}
-          dataset_name={task.dataset_name}
-          dataset_version={task.dataset_version}
+          name={task["task-name"]}
+          category={task["task-category"]}
         />
-        <TaskUsage
-          taskId={id}
-          datasetName={task.dataset_name}
-          datasetVersion={task.dataset_version}
-        />
-        {task.demo_url && <TaskDemo demoUrl={task.demo_url} />}
         <TaskInstruction
-          instruction={task.instruction}
-          encrypted={task.registry.is_encrypted}
+          instruction={task["task-description"]}
         />
-        <TaskTags
-          tags={task.tags}
-          datasetName={task.dataset_name}
-          datasetVersion={task.dataset_version}
-        />
-        {task.author_name !== "unknown" && task.author_name !== "anonymous" && (
+        {task["author-name"] !== "unknown" && task["author-name"] !== "anonymous" && (
           <p className="text-muted-foreground font-mono text-sm">
-            Created by {task.author_name}
+            Created by {task["author-name"]}
           </p>
         )}
         <div className="flex flex-1 flex-col justify-end">

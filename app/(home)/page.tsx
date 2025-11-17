@@ -13,7 +13,7 @@ import { TaskGrid } from "./registry/[name]/[version]/components/task-grid";
 const getTasks = async () => {
   const supabase = await createClient();
   const { data: tasks, error } = await supabase
-    .from("task-example")
+    .from("task")
     .select("*");
 
   if (error) {
@@ -22,7 +22,7 @@ const getTasks = async () => {
     throw new Error(error.message);
   }
 
-  console.log("Tasks fetched successfully:", tasks);
+  // console.log("Tasks fetched successfully:", tasks);
   return tasks;
 };
 

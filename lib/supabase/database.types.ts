@@ -71,8 +71,9 @@ export type Database = {
         }
         Relationships: []
       }
-      "task-example": {
+      task: {
         Row: {
+          "author-name": string | null
           created_at: string
           id: number
           "task-category": string | null
@@ -80,6 +81,7 @@ export type Database = {
           "task-name": string | null
         }
         Insert: {
+          "author-name"?: string | null
           created_at?: string
           id?: number
           "task-category"?: string | null
@@ -87,6 +89,7 @@ export type Database = {
           "task-name"?: string | null
         }
         Update: {
+          "author-name"?: string | null
           created_at?: string
           id?: number
           "task-category"?: string | null
