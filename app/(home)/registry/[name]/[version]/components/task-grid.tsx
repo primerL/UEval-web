@@ -3,7 +3,7 @@ import { Tables } from "@/lib/supabase/database.types";
 import { TaskCard } from "./task-card";
 
 interface TaskGridProps {
-  tasks: (Tables<"task"> & { registry: Tables<"registry"> })[];
+  tasks: Tables<"task-example">[];
   behavior?: "filter" | "navigate";
 }
 

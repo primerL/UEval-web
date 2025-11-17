@@ -10,25 +10,21 @@ import { LeaderboardChart } from "./components/leaderboard-chart";
 import { getHarborLeaderboard } from "./leaderboard/actions";
 import { TaskGrid } from "./registry/[name]/[version]/components/task-grid";
 
-const getTasks = unstable_cache(
-  async () => {
-    const supabase = await createClient();
-    const { data: tasks, error } = await supabase
-      .from("task-example")
-      .select("*")
-      .in("id", [
-        "1",
-      ]);
+const getTasks = async () => {
+  const supabase = await createClient();
+  const { data: tasks, error } = await supabase
+    .from("task-example")
+    .select("*");
 
-    if (error) {
-      throw new Error(error.message);
-    }
+  if (error) {
+    console.error("Supabase error:", error);
+    console.error("Error details:", JSON.stringify(error, null, 2));
+    throw new Error(error.message);
+  }
 
-    return tasks;
-  },
-  ["landingTasks"],
-  { revalidate: 3600, tags: ["landingTasks"] },
-);
+  console.log("Tasks fetched successfully:", tasks);
+  return tasks;
+};
 
 export default async function Tasks() {
   const tasks = await getTasks();
