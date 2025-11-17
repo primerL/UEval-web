@@ -22,10 +22,8 @@ export default async function Dataset({
   const supabase = await createClient();
 
   const { data: tasks, error } = await supabase
-    .from("task")
-    .select("*, registry!inner(*)")
-    .eq("dataset_name", name)
-    .eq("dataset_version", version);
+    .from("task-example")
+    .select("*");
 
   if (error) {
     notFound();

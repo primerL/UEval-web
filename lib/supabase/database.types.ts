@@ -7,285 +7,103 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
+    PostgrestVersion: "13.0.5"
   }
   public: {
     Tables: {
-      registry: {
+      "leaderboard-cp": {
         Row: {
-          branch: string
-          commit_hash: string
+          "avg@5": number | null
           created_at: string
-          dataset_path: string
-          description: string | null
-          github_url: string
-          is_encrypted: boolean
-          name: string
-          terminal_bench_version: string
-          updated_at: string
-          version: string
+          id: number
+          model_name: string | null
+          "pass@1": number | null
+          "pass@5": number | null
+          "score@1": number | null
+          "score@5": number | null
         }
         Insert: {
-          branch: string
-          commit_hash: string
+          "avg@5"?: number | null
           created_at?: string
-          dataset_path: string
-          description?: string | null
-          github_url: string
-          is_encrypted?: boolean
-          name: string
-          terminal_bench_version: string
-          updated_at?: string
-          version: string
+          id?: number
+          model_name?: string | null
+          "pass@1"?: number | null
+          "pass@5"?: number | null
+          "score@1"?: number | null
+          "score@5"?: number | null
         }
         Update: {
-          branch?: string
-          commit_hash?: string
+          "avg@5"?: number | null
           created_at?: string
-          dataset_path?: string
-          description?: string | null
-          github_url?: string
-          is_encrypted?: boolean
-          name?: string
-          terminal_bench_version?: string
-          updated_at?: string
-          version?: string
+          id?: number
+          model_name?: string | null
+          "pass@1"?: number | null
+          "pass@5"?: number | null
+          "score@1"?: number | null
+          "score@5"?: number | null
         }
         Relationships: []
       }
-      run_result: {
+      "leaderboard-research": {
         Row: {
-          agent_name: string
-          agent_org: string
           created_at: string
-          dataset_name: string
-          dataset_version: string
-          id: string
-          metrics: Json
+          id: number
           model_name: string | null
-          model_org: string | null
-          run_lock: Json
-          show_on_leaderboard: boolean
-          updated_at: string
+          "pass@1": number | null
+          "score@1": number | null
         }
         Insert: {
-          agent_name: string
-          agent_org: string
           created_at?: string
-          dataset_name: string
-          dataset_version: string
-          id?: string
-          metrics: Json
+          id?: number
           model_name?: string | null
-          model_org?: string | null
-          run_lock: Json
-          show_on_leaderboard?: boolean
-          updated_at?: string
+          "pass@1"?: number | null
+          "score@1"?: number | null
         }
         Update: {
-          agent_name?: string
-          agent_org?: string
           created_at?: string
-          dataset_name?: string
-          dataset_version?: string
-          id?: string
-          metrics?: Json
+          id?: number
           model_name?: string | null
-          model_org?: string | null
-          run_lock?: Json
-          show_on_leaderboard?: boolean
-          updated_at?: string
+          "pass@1"?: number | null
+          "score@1"?: number | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "fk_run_result_registry"
-            columns: ["dataset_name", "dataset_version"]
-            isOneToOne: false
-            referencedRelation: "registry"
-            referencedColumns: ["name", "version"]
-          },
-        ]
+        Relationships: []
       }
-      task: {
+      "task-example": {
         Row: {
-          author_email: string
-          author_name: string
-          category: string
           created_at: string
-          dataset_name: string
-          dataset_version: string
-          demo_url: string | null
-          difficulty: Database["public"]["Enums"]["difficulty_type"]
-          github_url: string
-          id: string
-          include_in_launch: boolean
-          instruction: string
-          tags: string[]
-          updated_at: string
+          id: number
+          "task-category": string | null
+          "task-description": string | null
+          "task-name": string | null
         }
         Insert: {
-          author_email: string
-          author_name?: string
-          category: string
           created_at?: string
-          dataset_name?: string
-          dataset_version?: string
-          demo_url?: string | null
-          difficulty: Database["public"]["Enums"]["difficulty_type"]
-          github_url: string
-          id: string
-          include_in_launch?: boolean
-          instruction: string
-          tags: string[]
-          updated_at?: string
+          id?: number
+          "task-category"?: string | null
+          "task-description"?: string | null
+          "task-name"?: string | null
         }
         Update: {
-          author_email?: string
-          author_name?: string
-          category?: string
           created_at?: string
-          dataset_name?: string
-          dataset_version?: string
-          demo_url?: string | null
-          difficulty?: Database["public"]["Enums"]["difficulty_type"]
-          github_url?: string
-          id?: string
-          include_in_launch?: boolean
-          instruction?: string
-          tags?: string[]
-          updated_at?: string
+          id?: number
+          "task-category"?: string | null
+          "task-description"?: string | null
+          "task-name"?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "fk_task_registry"
-            columns: ["dataset_name", "dataset_version"]
-            isOneToOne: false
-            referencedRelation: "registry"
-            referencedColumns: ["name", "version"]
-          },
-        ]
-      }
-      task_result: {
-        Row: {
-          agent_ended_at: string | null
-          agent_started_at: string | null
-          created_at: string
-          dataset_name: string
-          dataset_version: string
-          ended_at: string | null
-          failure_mode: string
-          id: string
-          instruction: string
-          is_resolved: boolean | null
-          n_input_tokens: number | null
-          n_output_tokens: number | null
-          parser_results: Json | null
-          run_result_id: string
-          started_at: string | null
-          task_id: string
-          test_ended_at: string | null
-          test_started_at: string | null
-          trial_name: string
-          updated_at: string
-        }
-        Insert: {
-          agent_ended_at?: string | null
-          agent_started_at?: string | null
-          created_at?: string
-          dataset_name: string
-          dataset_version: string
-          ended_at?: string | null
-          failure_mode: string
-          id?: string
-          instruction: string
-          is_resolved?: boolean | null
-          n_input_tokens?: number | null
-          n_output_tokens?: number | null
-          parser_results?: Json | null
-          run_result_id: string
-          started_at?: string | null
-          task_id: string
-          test_ended_at?: string | null
-          test_started_at?: string | null
-          trial_name: string
-          updated_at?: string
-        }
-        Update: {
-          agent_ended_at?: string | null
-          agent_started_at?: string | null
-          created_at?: string
-          dataset_name?: string
-          dataset_version?: string
-          ended_at?: string | null
-          failure_mode?: string
-          id?: string
-          instruction?: string
-          is_resolved?: boolean | null
-          n_input_tokens?: number | null
-          n_output_tokens?: number | null
-          parser_results?: Json | null
-          run_result_id?: string
-          started_at?: string | null
-          task_id?: string
-          test_ended_at?: string | null
-          test_started_at?: string | null
-          trial_name?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "fk_task_result_task"
-            columns: ["task_id", "dataset_name", "dataset_version"]
-            isOneToOne: false
-            referencedRelation: "task"
-            referencedColumns: ["id", "dataset_name", "dataset_version"]
-          },
-          {
-            foreignKeyName: "task_result_run_result_uuid_fkey"
-            columns: ["run_result_id"]
-            isOneToOne: false
-            referencedRelation: "run_result"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      get_leaderboard_results: {
-        Args: { p_dataset_name: string; p_dataset_version: string }
-        Returns: {
-          agent_name: string
-          agent_org: string
-          model_name: string
-          model_org: string
-          created_at: string
-          accuracy: number
-          stderr: number
-          rank: number
-        }[]
-      }
-      get_leaderboard_rows: {
-        Args: { p_dataset_name: string; p_dataset_version: string }
-        Returns: {
-          agent_name: string
-          agent_org: string
-          model_name: string
-          model_org: string
-          created_at: string
-          accuracy: number
-          stderr: number
-          rank: number
-        }[]
-      }
+      [_ in never]: never
     }
     Enums: {
-      difficulty_type: "easy" | "medium" | "hard"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -412,8 +230,6 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {
-      difficulty_type: ["easy", "medium", "hard"],
-    },
+    Enums: {},
   },
 } as const

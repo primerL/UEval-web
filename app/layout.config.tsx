@@ -31,11 +31,6 @@ export const baseOptions: BaseLayoutProps = {
       active: "nested-url",
     },
     {
-      text: "Tasks",
-      url: "/registry/terminal-bench-core/head",
-      active: "nested-url",
-    },
-    {
       text: "Contributors",
       url: "/contributors",
       active: "nested-url",
@@ -45,17 +40,6 @@ export const baseOptions: BaseLayoutProps = {
       url: "/news",
       active: "nested-url",
     },
-    // {
-    //   text: "Registry",
-    //   url: "/registry",
-    //   active: "nested-url",
-    // },
-    // {
-    //   text: "Terminus",
-    //   url: "/terminus",
-    //   active: "nested-url",
-    // },
-    // {
     //   text: "Discord",
     //   url: "https://discord.gg/6xWPKhGDbA",
     //   external: true,
