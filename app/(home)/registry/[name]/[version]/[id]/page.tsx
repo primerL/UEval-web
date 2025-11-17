@@ -52,7 +52,7 @@ export default async function Task({ params }: PageProps) {
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-6 sm:pt-12">
       <div className="flex w-full max-w-3xl flex-1 flex-col gap-6 font-mono">
-        <Breadcrumb className="hidden sm:block">
+        {/* <Breadcrumb className="hidden sm:block">
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href="/">Home</BreadcrumbLink>
@@ -72,7 +72,8 @@ export default async function Task({ params }: PageProps) {
               <BreadcrumbPage>{id}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
-        </Breadcrumb>
+        </Breadcrumb> */}
+        {/* TODO: Change task format */}
         <TaskHeader
           name={task["task-name"]}
           category={task["task-category"]}

@@ -8,11 +8,11 @@ interface TaskInstructionProps {
 
 export function TaskInstruction({
   instruction,
-  encrypted,
+  // encrypted,
 }: TaskInstructionProps) {
   return (
     <Section title="Instruction">
-      {encrypted ? (
+      {/* {encrypted ? (
         <div className="bg-muted flex items-center gap-3 border p-3">
           <Lock className="text-muted-foreground size-4" />
           <p className="text-muted-foreground font-mono sm:text-sm">
@@ -23,7 +23,10 @@ export function TaskInstruction({
         <p className="font-mono wrap-anywhere whitespace-pre-wrap sm:text-sm">
           {instruction}
         </p>
-      )}
+      )} */}
+      <p className="font-mono wrap-anywhere whitespace-pre-wrap sm:text-sm">
+        {instruction}
+      </p>
     </Section>
   );
 }

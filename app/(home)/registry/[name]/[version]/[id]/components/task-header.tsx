@@ -13,20 +13,20 @@ interface TaskHeaderProps {
 }
 
 export function TaskHeader({
-  id,
-  githubUrl,
+  name,
+  // githubUrl,
   category,
-  difficulty,
-  dataset_name,
-  dataset_version,
+  // difficulty,
+  // dataset_name,
+  // dataset_version,
 }: TaskHeaderProps) {
   return (
     <div className="space-y-4">
-      <CopyTaskId id={id} />
-      <Badge>
+      <CopyTaskId id={name} />
+      {/* <Badge>
         {dataset_name}=={dataset_version}
-      </Badge>
-      <div className="flex gap-2">
+      </Badge> */}
+      {/* <div className="flex gap-2">
         <Link
           href={githubUrl}
           target="_blank"
@@ -36,22 +36,22 @@ export function TaskHeader({
           Github
           <ExternalLink className="h-4 w-4" />
         </Link>
-      </div>
+      </div> */}
       <div className="flex gap-2">
-        <Link
+        {/* <Link
           href={{
             pathname: `/registry/${dataset_name}/${dataset_version}`,
             query: { categories: [category] },
           }}
-        >
+        > */}
           <Badge
             variant="secondary"
             className="hover:bg-muted-foreground/15 font-mono transition-colors duration-200"
           >
             {category}
           </Badge>
-        </Link>
-        <Link
+        {/* </Link> */}
+        {/* <Link
           href={{
             pathname: `/registry/${dataset_name}/${dataset_version}`,
             query: { difficulties: [difficulty] },
@@ -63,7 +63,7 @@ export function TaskHeader({
           >
             {difficulty}
           </Badge>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

@@ -100,8 +100,9 @@ export default async function Tasks() {
           {tasks && (
             <div className="-mx-4 flex flex-col gap-12 sm:mx-0 sm:gap-16">
               <TaskGrid tasks={tasks} behavior="navigate" />
+              {/* TODO: Add link to all tasks */}
               <Link
-                href="TODO: DATASET_URL"
+                href="www.wenhaochai.com"
                 className={cn(
                   buttonVariants({
                     variant: "secondary",
