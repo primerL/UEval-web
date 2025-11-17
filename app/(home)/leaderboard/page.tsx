@@ -13,17 +13,10 @@ type Leaderboard = {
 
 const leaderboards: Leaderboard[] = [
   {
-    name: "terminal-bench",
-    version: "2.0",
-    description:
-      "The latest version of Terminal-Bench. Submissions must use terminal-bench@2.0 via Harbor.",
-    dataSource: "harbor",
-  },
-  {
-    name: "terminal-bench",
+    name: "FrontierCS",
     version: "1.0",
     description:
-      "Legacy version of Terminal-Bench. Submissions must use terminal-bench-core==0.1.1.",
+      "Competitive Programming benchmark leaderboard. Track model performance across various metrics including pass rates and scores.",
     dataSource: "static",
   },
 ];
@@ -36,8 +29,7 @@ export default async function LeaderboardsPage() {
           Leaderboards
         </h2>
         <p className="mb-6 font-mono text-sm text-muted-foreground">
-          View and compare agent performance across different Terminal-Bench
-          versions.
+          View and compare model performance on the FrontierCS benchmark.
         </p>
         <Grid className="-mx-4 sm:mx-0">
           {leaderboards.map((leaderboard) => (

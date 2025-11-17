@@ -7,9 +7,8 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { CodeBlock } from "@/components/ui/code-block";
-import { getHarborLeaderboard } from "../../actions";
-import { liveLeaderboardData } from "../../data";
-import { FilterableLeaderboard } from "../../components/filterable-leaderboard";
+import { getCPLeaderboard } from "../../actions";
+import { LeaderboardCP } from "../../components/leaderboard-cp";
 import { notFound } from "next/navigation";
 
 type LeaderboardPageProps = {
@@ -26,8 +25,7 @@ export default async function LeaderboardPage({
 
   // Validate the leaderboard exists
   const validLeaderboards = [
-    { name: "terminal-bench", version: "2.0", type: "harbor" as const },
-    { name: "terminal-bench", version: "1.0", type: "static" as const },
+    { name: "FrontierCS", version: "1.0", type: "cp" as const },
   ];
 
   const leaderboard = validLeaderboards.find(
@@ -39,32 +37,16 @@ export default async function LeaderboardPage({
   }
 
   // Fetch the appropriate data
-  let rows;
-  let codeBlock;
+  const rows = await getCPLeaderboard();
 
-  if (leaderboard.type === "harbor" && version === "2.0") {
-    rows = await getHarborLeaderboard(name, version);
-    codeBlock = (
-      <CodeBlock
-        lang="bash"
-        title="Note: submissions must use terminal-bench@2.0"
-        code={`harbor run -d terminal-bench@2.0 -a "<agent-name>" -m "<model-name>" -k 5`}
-        className="mb-6 font-mono"
-      />
-    );
-  } else if (leaderboard.type === "static" && version === "1.0") {
-    rows = [...liveLeaderboardData].sort((a, b) => b.accuracy - a.accuracy);
-    codeBlock = (
-      <CodeBlock
-        lang="bash"
-        title="Note: submissions must use terminal-bench-core==0.1.1"
-        code={`tb run -d terminal-bench-core==0.1.1 -a "<agent-name>" -m "<model-name>"`}
-        className="mb-6 font-mono"
-      />
-    );
-  } else {
-    notFound();
-  }
+  const codeBlock = (
+    <CodeBlock
+      lang="bash"
+      title="FrontierCS Leaderboard - Competitive Programming Benchmark"
+      code={`# Submit your scores to the leaderboard`}
+      className="mb-6 font-mono"
+    />
+  );
 
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-6 sm:pt-12">
@@ -90,10 +72,9 @@ export default async function LeaderboardPage({
           {name}@{version} Leaderboard
         </h2>
         {codeBlock}
-        <FilterableLeaderboard
+        <LeaderboardCP
           rows={rows}
           className="-mx-4 md:mx-0"
-          version={version}
         />
       </div>
     </div>

@@ -7,7 +7,7 @@ import { unstable_cache } from "next/cache";
 import Link from "next/link";
 import { Callout } from "./components/callout";
 import { LeaderboardChart } from "./components/leaderboard-chart";
-import { getHarborLeaderboard } from "./leaderboard/actions";
+import { getCPLeaderboard } from "./leaderboard/actions";
 import { TaskGrid } from "./registry/[name]/[version]/components/task-grid";
 
 const getTasks = async () => {
@@ -28,7 +28,7 @@ const getTasks = async () => {
 
 export default async function Tasks() {
   const tasks = await getTasks();
-  const harborRows = await getHarborLeaderboard("terminal-bench", "2.0");
+  const cpLeaderboard = await getCPLeaderboard();
 
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-6">
@@ -75,7 +75,7 @@ export default async function Tasks() {
             <p className="font-mono text-sm">view agent performance</p>
             <ChevronDown className="animate-float size-4" />
           </div>
-          <LeaderboardChart className="-mx-4 mb-16 self-stretch" data={harborRows} />
+          <LeaderboardChart className="-mx-4 mb-16 self-stretch" data={cpLeaderboard} />
           <Link
             href="/leaderboard"
             className={cn(

@@ -1,7 +1,7 @@
 "use client";
 
 import { ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-import { Bar, BarChart, ErrorBar, LabelList, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, LabelList, XAxis, YAxis } from "recharts";
 
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -16,20 +16,17 @@ import { cn } from "@/lib/utils";
 import { useWindowWidth } from "@react-hook/window-size";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { LeaderboardEntry } from "../leaderboard/data";
+import { LeaderboardCPEntry } from "../leaderboard/actions";
 
 const chartConfig = {
-  accuracy: {
-    label: "Accuracy",
+  score: {
+    label: "Score@1",
     color: "var(--primary)",
-  },
-  stderr: {
-    label: "Standard Error",
   },
 } satisfies ChartConfig;
 
 interface LeaderboardChartProps extends React.ComponentProps<"div"> {
-  data: LeaderboardEntry[];
+  data: LeaderboardCPEntry[];
 }
 
 export function LeaderboardChart({
@@ -38,7 +35,8 @@ export function LeaderboardChart({
   ...props
 }: LeaderboardChartProps) {
   const refinedData = [...data]
-    .sort((a, b) => b.accuracy - a.accuracy)
+    .filter((entry) => entry["score@1"] !== null)
+    .sort((a, b) => (b["score@1"] || 0) - (a["score@1"] || 0))
     .slice(0, 10);
 
   const width = useWindowWidth();
@@ -88,7 +86,7 @@ export function LeaderboardChart({
                 <ChartTooltipContent className="rounded-none font-mono" />
               }
             />
-            <Bar dataKey="accuracy" radius={0} fill="var(--color-accuracy)">
+            <Bar dataKey="score@1" radius={0} fill="var(--color-score)">
               <LabelList
                 position={width > 768 ? "insideLeft" : "right"}
                 offset={width > 768 ? 8 : width > 640 ? 42 : 12}
@@ -99,26 +97,11 @@ export function LeaderboardChart({
                 fontSize={12}
                 formatter={(value: number) => `${(value * 100).toFixed(1)}%`}
               />
-              <ErrorBar
-                dataKey="stderr"
-                stroke="var(--color-muted-foreground)"
-                radius={0}
-              />
             </Bar>
             <YAxis
               type="category"
               className="font-mono"
-              dataKey={(entry) =>
-                `${entry.agent} (${
-                  Array.isArray(entry.model) && entry.model.length > 1
-                    ? "Mixed"
-                    : Array.isArray(entry.model) && entry.model.length === 1
-                      ? entry.model[0]
-                      : Array.isArray(entry.model) && entry.model.length === 0
-                        ? "Unknown"
-                        : entry.model
-                })`
-              }
+              dataKey="model_name"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
@@ -137,8 +120,7 @@ export function LeaderboardChart({
       <Separator />
       <CardFooter>
         <p className="text-muted-foreground mx-auto max-w-xl text-center font-mono text-sm/relaxed">
-          task resolution success-rate for top agents and models on
-          terminal-bench@2.0
+          Top 10 models by Score@1 on FrontierCS leaderboard
         </p>
       </CardFooter>
     </Card>

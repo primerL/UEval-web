@@ -1,46 +1,36 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/authless-server";
-import { IntegrationMethod, LeaderboardEntry } from "./data";
 
-export async function getHarborLeaderboard(
-  datasetName: string,
-  datasetVersion: string,
-): Promise<LeaderboardEntry[]> {
+export type LeaderboardCPEntry = {
+  id: number;
+  model_name: string;
+  "pass@1": number | null;
+  "pass@5": number | null;
+  "score@1": number | null;
+  "score@5": number | null;
+  "avg@5": number | null;
+  created_at: string;
+};
+
+export async function getCPLeaderboard(): Promise<LeaderboardCPEntry[]> {
   const client = await createClient();
 
-  const { data, error } = await client.rpc("get_agent_scores_v3", {
-    p_dataset_name: datasetName,
-    p_dataset_version: datasetVersion,
-  });
+  const { data, error } = await client
+    .from("leaderboard-cp")
+    .select("*");
 
   if (error) {
-    console.error("Error fetching Harbor leaderboard:", error);
+    console.error("Error fetching CP leaderboard:", error);
     return [];
   }
 
-  const entries = data
-    .map((row) => ({
-      agent: row.agent_display_name || row.agent_name,
-      model: row.model_display_names || row.model_names,
-      agentOrganization: row.agent_org_display_name,
-      modelOrganization: row.model_org_display_names,
-      date: new Date(row.created_at).toISOString().slice(0, 10),
-      accuracy: row.accuracy,
-      stderr: row.stderr,
-      integrationMethod: IntegrationMethod.API,
-      agentUrl: row.agent_url ?? "",
-      verified: row.agent_name !== "warp",
-    }))
-    .filter(
-      (entry) =>
-        !entry.model.includes("Grok Code Fast 1") ||
-        entry.agent !== "OpenHands",
-    );
+  // Sort in JavaScript instead of using .order() due to @ symbol in column name
+  const sorted = (data || []).sort((a, b) => {
+    const scoreA = a["score@1"] ?? -Infinity;
+    const scoreB = b["score@1"] ?? -Infinity;
+    return scoreB - scoreA;
+  });
 
-  // Add key property and sort by accuracy
-  return entries.map((entry) => ({
-    ...entry,
-    key: `${entry.agent}__${entry.model}`.toLowerCase(),
-  }));
+  return sorted;
 }
