@@ -1,13 +1,13 @@
 "use server";
 
-import { createHarborClient } from "@/lib/supabase/authless-server-harbor";
+import { createClient } from "@/lib/supabase/authless-server";
 import { IntegrationMethod, LeaderboardEntry } from "./data";
 
 export async function getHarborLeaderboard(
   datasetName: string,
   datasetVersion: string,
 ): Promise<LeaderboardEntry[]> {
-  const client = await createHarborClient();
+  const client = await createClient();
 
   const { data, error } = await client.rpc("get_agent_scores_v3", {
     p_dataset_name: datasetName,

@@ -14,17 +14,10 @@ const getTasks = unstable_cache(
   async () => {
     const supabase = await createClient();
     const { data: tasks, error } = await supabase
-      .from("task")
-      .select("*, registry(*)")
-      .eq("dataset_name", "terminal-bench-core")
-      .eq("dataset_version", "head")
+      .from("task-example")
+      .select("*")
       .in("id", [
-        "configure-git-webserver",
-        "openssl-selfsigned-cert",
-        "build-linux-kernel-qemu",
-        "reshard-c4-data",
-        "crack-7z-hash",
-        "train-fasttext",
+        "1",
       ]);
 
     if (error) {
