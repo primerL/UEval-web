@@ -37,10 +37,10 @@ export default async function Tasks() {
         <div className="flex flex-col justify-center gap-16 sm:pt-24 sm:pb-0">
           <div className="space-y-8">
             <h2 className="text-center font-mono text-3xl/tight font-medium tracking-tighter text-balance sm:mb-8 sm:text-6xl/tight">
-              FrontierCS: The Next Frontier of Computer Science
+              UEval: A Real-World Benchmark for Unified Multimodal Generation
             </h2>
             <p className="text-fd-muted-foreground text-center font-mono tracking-tight text-balance sm:text-xl/relaxed">
-              FrontierCS is a benchmark of open-ended problems across diverse areas of computer science.
+              UEval comprises 1,000 expert-curated prompts that require both images and text in the model outputs, sourced from 8 diverse real-world domains.
             </p>
           </div>
           {/* <div className="mx-auto flex max-w-3xl flex-col gap-4 md:flex-row md:gap-2">
@@ -72,7 +72,7 @@ export default async function Tasks() {
         </div>
         <div className="flex w-full flex-col items-center py-12 gap-12">
           <Link
-          // TODO: arxiv link
+            // TODO: arxiv link
             href="https://arxiv.org/abs/2506.11928"
             className={cn(
               "font-mono",
@@ -117,9 +117,8 @@ export default async function Tasks() {
           {tasks && (
             <div className="-mx-4 flex flex-col gap-12 sm:mx-0 sm:gap-16">
               <TaskGrid tasks={tasks} behavior="navigate" />
-              {/* TODO: Add link to all tasks */}
               <Link
-                href="www.wenhaochai.com"
+                href="https://huggingface.co/datasets/primerL/UEval-test"
                 className={cn(
                   buttonVariants({
                     variant: "secondary",
@@ -134,26 +133,21 @@ export default async function Tasks() {
           )}
         </div>
         <div className="mb-4 flex flex-col items-center gap-2">
-            <p className="font-mono text-sm">
-              submit your results
-            </p>
-            <ChevronDown className="animate-float size-4" />
-            {/* TODO: Add form here */}
-            <p>
-              Send us an email to submit your results:{" "}
-              <a
-                href="mailto:qmang@berkeley.edu"
-                className="text-foreground underline underline-offset-4"
-              >
-                qmang@berkeley.edu
-              </a>{" "}
-              <a
-                href="mailto:wenhao.chai@princeton.edu"
-                className="text-foreground underline underline-offset-4"
-              >
-                wenhao.chai@princeton.edu
-              </a>
-            </p>
+          <p className="font-mono text-sm">
+            submit your results
+          </p>
+          <ChevronDown className="animate-float size-4" />
+          {/* TODO: Add form here */}
+          <p>
+            Send us an email to submit your results:{" "}
+            {" "}
+            <a
+              href="mailto:wenhao.chai@princeton.edu"
+              className="text-foreground underline underline-offset-4"
+            >
+              wenhao.chai@princeton.edu
+            </a>
+          </p>
         </div>
         <div className="flex flex-1 flex-col justify-end">
           <CanaryString />

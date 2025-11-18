@@ -54,9 +54,9 @@ export function DataTable<TData, TValue>({
                     {header.isPlaceholder
                       ? null
                       : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                   </TableHead>
                 );
               })}
@@ -105,16 +105,11 @@ export function DataTable<TData, TValue>({
           )}
           .
         </p> */}
-        
+
         {/* TODO: Change email */}
         <p>
           Send us an email to submit your results:{" "}
-          <a
-            href="mailto:qmang@berkeley.edu"
-            className="text-foreground underline underline-offset-4"
-          >
-            qmang@berkeley.edu
-          </a>{" "}
+          {" "}
           <a
             href="mailto:wenhao.chai@princeton.edu"
             className="text-foreground underline underline-offset-4"
@@ -122,7 +117,7 @@ export function DataTable<TData, TValue>({
             wenhao.chai@princeton.edu
           </a>
         </p>
-        
+
         {/* <div className="mx-auto flex flex-row items-center justify-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"

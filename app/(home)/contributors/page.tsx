@@ -273,22 +273,6 @@ export default function TeamPage() {
             </Link>
           ))}
         </div>
-        <div className="mt-6 flex flex-col sm:mt-12">
-          <h2 className="mb-6 font-mono text-2xl tracking-tighter">
-            Acknowledgements
-          </h2>
-          <div className="space-y-4">
-            <p className="text-muted-foreground font-mono text-sm/relaxed">
-              We thank Ce Jin, Mingrui Liu, Youliang Yuan, and Qingyu Shi for valuable discussions and feedback on the benchmark's design and evaluation.
-            </p>
-            {/* <p className="text-muted-foreground font-mono text-sm/relaxed">
-              TODO: Acknowledgements
-            </p>
-            <p className="text-muted-foreground font-mono text-sm/relaxed">
-              TODO: Acknowledgements
-            </p> */}
-          </div>
-        </div>
       </div>
     </div>
   );

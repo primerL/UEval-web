@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { Binary } from "lucide-react";
+import { Image } from "lucide-react";
 
 /**
  * Shared layout configurations
@@ -12,10 +12,9 @@ export const baseOptions: BaseLayoutProps = {
   nav: {
     title: (
       <div className="flex items-center gap-2">
-        {/* TODO: Change logo and name */}
-        <Binary className="size-4" />
+        <Image className="size-4" />
         <p className="font-mono text-base font-medium tracking-tight">
-          FrontierCS
+          UEval
         </p>
       </div>
     ),
@@ -31,11 +30,11 @@ export const baseOptions: BaseLayoutProps = {
       url: "/leaderboard",
       active: "nested-url",
     },
-    {
-      text: "Contributors",
-      url: "/contributors",
-      active: "nested-url",
-    },
+    // {
+    //   text: "Contributors",
+    //   url: "/contributors",
+    //   active: "nested-url",
+    // },
     // {
     //   text: "News",
     //   url: "/news",

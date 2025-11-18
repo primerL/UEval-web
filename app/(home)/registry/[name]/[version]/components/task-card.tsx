@@ -15,8 +15,8 @@ export function TaskCard({ task, behavior }: TaskCardProps) {
   const description = task["task-description"];
 
   // For task, use fixed dataset values
-  // TODO: Add dataset_name and dataset_version columns to task table
-  const datasetName = "FrontierCS";
+  // TODO: Change dataset name and version
+  const datasetName = "UEval";
   const datasetVersion = "1.0";
   const taskId = task["id"].toString();
 
