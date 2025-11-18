@@ -155,10 +155,9 @@ export default async function Tasks() {
               </a>
             </p>
         </div>
-        {/* TODO: Add canary string here */}
-        {/* <div className="flex flex-1 flex-col justify-end">
+        <div className="flex flex-1 flex-col justify-end">
           <CanaryString />
-        </div> */}
+        </div>
       </div>
     </div>
   );

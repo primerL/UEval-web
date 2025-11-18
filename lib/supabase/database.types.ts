@@ -74,7 +74,7 @@ export type Database = {
       task: {
         Row: {
           "author-name": string | null
-          created_at: string
+          created_at: string | null
           id: number
           "task-category": string | null
           "task-description": string | null
@@ -82,15 +82,15 @@ export type Database = {
         }
         Insert: {
           "author-name"?: string | null
-          created_at?: string
-          id?: number
+          created_at?: string | null
+          id: number
           "task-category"?: string | null
           "task-description"?: string | null
           "task-name"?: string | null
         }
         Update: {
           "author-name"?: string | null
-          created_at?: string
+          created_at?: string | null
           id?: number
           "task-category"?: string | null
           "task-description"?: string | null
