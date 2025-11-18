@@ -76,8 +76,8 @@ export default async function Tasks() {
             <ChevronDown className="animate-float size-4" />
           </div> */}
           <div className="grid w-full grid-cols-1 gap-4 mb-16 lg:grid-cols-2">
-            <LeaderboardChart className="-mx-4 sm:mx-0" data={cpLeaderboard} title="Algorithmic" />
-            <LeaderboardChart className="-mx-4 sm:mx-0" data={researchLeaderboard} title="Research" />
+            <LeaderboardChart className="-mx-4 sm:mx-0" data={cpLeaderboard} title="Algorithmic" version="1.0" />
+            <LeaderboardChart className="-mx-4 sm:mx-0" data={researchLeaderboard} title="Research" version="1.0" />
           </div>
           <Link
             href="/leaderboard"
