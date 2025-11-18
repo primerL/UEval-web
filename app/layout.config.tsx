@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { Terminal } from "lucide-react";
+import { Binary } from "lucide-react";
 
 /**
  * Shared layout configurations
@@ -12,8 +12,8 @@ export const baseOptions: BaseLayoutProps = {
   nav: {
     title: (
       <div className="flex items-center gap-2">
-        <Terminal className="size-4" />
         {/* TODO: Change logo and name */}
+        <Binary className="size-4" />
         <p className="font-mono text-base font-medium tracking-tight">
           FrontierCS
         </p>

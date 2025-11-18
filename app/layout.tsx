@@ -15,11 +15,7 @@ export const metadata: Metadata = {
   description: "FrontierCS is a benchmark of open-ended problems across diverse areas of computer science.",
   icons: {
     icon: [
-      {
-        url: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23000'/><text x='50' y='70' font-family='Arial' font-size='70' font-weight='bold' fill='%23fff' text-anchor='middle'>F</text></svg>",
-        type: "image/svg+xml",
-      },
-      { url: "/favicon.ico" }, // backup icon
+      { url: "/favicon.ico" }, // TODO: Change favicon icon
     ],
   },
   // TODO: Add OpenGraph image
