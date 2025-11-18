@@ -7,7 +7,7 @@ import { unstable_cache } from "next/cache";
 import Link from "next/link";
 import { Callout } from "./components/callout";
 import { LeaderboardChart } from "./components/leaderboard-chart";
-import { getCPLeaderboard } from "./leaderboard/actions";
+import { getCPLeaderboard, getResearchLeaderboard } from "./leaderboard/actions";
 import { TaskGrid } from "./registry/[name]/[version]/components/task-grid";
 
 const getTasks = async () => {
@@ -29,6 +29,7 @@ const getTasks = async () => {
 export default async function Tasks() {
   const tasks = await getTasks();
   const cpLeaderboard = await getCPLeaderboard();
+  const researchLeaderboard = await getResearchLeaderboard();
 
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-6">
@@ -72,10 +73,13 @@ export default async function Tasks() {
         </div>
         <div className="flex w-full flex-col items-center py-12">
           <div className="mb-6 flex flex-col items-center gap-2">
-            <p className="font-mono text-sm">view agent performance</p>
+            <p className="font-mono text-sm">view model performance</p>
             <ChevronDown className="animate-float size-4" />
           </div>
-          <LeaderboardChart className="-mx-4 mb-16 self-stretch" data={cpLeaderboard} />
+          <div className="grid w-full grid-cols-1 gap-4 mb-16 lg:grid-cols-2">
+            <LeaderboardChart className="-mx-4 sm:mx-0" data={cpLeaderboard} title="Algorithmic Track" />
+            <LeaderboardChart className="-mx-4 sm:mx-0" data={researchLeaderboard} title="Research Track" />
+          </div>
           <Link
             href="/leaderboard"
             className={cn(

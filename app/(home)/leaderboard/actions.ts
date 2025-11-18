@@ -13,6 +13,14 @@ export type LeaderboardCPEntry = {
   created_at: string;
 };
 
+export type LeaderboardResearchEntry = {
+  id: number;
+  model_name: string;
+  "pass@1": number | null;
+  "score@1": number | null;
+  created_at: string;
+};
+
 export async function getCPLeaderboard(): Promise<LeaderboardCPEntry[]> {
   const client = await createClient();
 
@@ -22,6 +30,28 @@ export async function getCPLeaderboard(): Promise<LeaderboardCPEntry[]> {
 
   if (error) {
     console.error("Error fetching CP leaderboard:", error);
+    return [];
+  }
+
+  // Sort in JavaScript instead of using .order() due to @ symbol in column name
+  const sorted = (data || []).sort((a, b) => {
+    const scoreA = a["score@1"] ?? -Infinity;
+    const scoreB = b["score@1"] ?? -Infinity;
+    return scoreB - scoreA;
+  });
+
+  return sorted;
+}
+
+export async function getResearchLeaderboard(): Promise<LeaderboardResearchEntry[]> {
+  const client = await createClient();
+
+  const { data, error } = await client
+    .from("leaderboard-research")
+    .select("*");
+
+  if (error) {
+    console.error("Error fetching Research leaderboard:", error);
     return [];
   }
 

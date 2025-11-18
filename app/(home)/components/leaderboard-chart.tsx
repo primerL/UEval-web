@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 import { useWindowWidth } from "@react-hook/window-size";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { LeaderboardCPEntry } from "../leaderboard/actions";
+import { LeaderboardCPEntry, LeaderboardResearchEntry } from "../leaderboard/actions";
 
 const chartConfig = {
   score: {
@@ -26,12 +26,14 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 interface LeaderboardChartProps extends React.ComponentProps<"div"> {
-  data: LeaderboardCPEntry[];
+  data: LeaderboardCPEntry[] | LeaderboardResearchEntry[];
+  title?: string;
 }
 
 export function LeaderboardChart({
   className,
   data,
+  title = "Algorithmic Track",
   ...props
 }: LeaderboardChartProps) {
   const refinedData = [...data]
@@ -50,7 +52,7 @@ export function LeaderboardChart({
       {...props}
     >
       <CardHeader className="flex flex-row items-center justify-between">
-        <p className="font-mono text-sm">agent performance</p>
+        <p className="font-mono text-sm">{title}</p>
         <Link
           href="/leaderboard"
           className={cn(
@@ -117,12 +119,6 @@ export function LeaderboardChart({
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <Separator />
-      <CardFooter>
-        <p className="text-muted-foreground mx-auto max-w-xl text-center font-mono text-sm/relaxed">
-          Top 10 models by Score@1 on FrontierCS leaderboard
-        </p>
-      </CardFooter>
     </Card>
   );
 }
