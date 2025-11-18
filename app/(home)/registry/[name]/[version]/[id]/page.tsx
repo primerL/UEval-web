@@ -39,7 +39,7 @@ const getTask = async ({ id }: { id: string }) => {
     throw new Error(error.message);
   }
 
-  console.log("Task fetched successfully:", task);
+  // console.log("Task fetched successfully:", task);
   return task;
 };
 

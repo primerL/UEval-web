@@ -6,6 +6,8 @@ const withMDX = createMDX();
 const config = {
   reactStrictMode: true,
   output: 'export',
+  basePath: '/frontiercs_web',
+  assetPrefix: '/frontiercs_web',
   images: {
     unoptimized: true, // Required for static export
   },
