@@ -7,8 +7,9 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { CodeBlock } from "@/components/ui/code-block";
-import { getCPLeaderboard } from "../../actions";
+import { getCPLeaderboard, getResearchLeaderboard } from "../../actions";
 import { LeaderboardCP } from "../../components/leaderboard-cp";
+import { LeaderboardResearch } from "../../components/leaderboard-research";
 import { notFound } from "next/navigation";
 
 type LeaderboardPageProps = {
@@ -25,7 +26,8 @@ export default async function LeaderboardPage({
 
   // Validate the leaderboard exists
   const validLeaderboards = [
-    { name: "FrontierCS", version: "1.0", type: "cp" as const },
+    { name: "Algorithmic", version: "1.0", type: "cp" as const },
+    { name: "Research", version: "1.0", type: "research" as const },
   ];
 
   const leaderboard = validLeaderboards.find(
@@ -37,16 +39,32 @@ export default async function LeaderboardPage({
   }
 
   // Fetch the appropriate data
-  const rows = await getCPLeaderboard();
+  let rows;
+  let codeBlock;
 
-  const codeBlock = (
-    <CodeBlock
-      lang="bash"
-      title="FrontierCS Leaderboard - Competitive Programming Benchmark"
-      code={`# Submit your scores to the leaderboard`}
-      className="mb-6 font-mono"
-    />
-  );
+  if (leaderboard.type === "cp") {
+    rows = await getCPLeaderboard();
+    codeBlock = (
+      <CodeBlock
+        lang="bash"
+        title="Algorithmic Problems"
+        code={`# Covering Optimization tasks, Constructive tasks, and Interactive tasks`}
+        className="mb-6 font-mono"
+      />
+    );
+  } else if (leaderboard.type === "research") {
+    rows = await getResearchLeaderboard();
+    codeBlock = (
+      <CodeBlock
+        lang="bash"
+        title="Research Problems"
+        code={`# Spanning six major CS domains: OS, HPC, AI, DB, PL, and Security`}
+        className="mb-6 font-mono"
+      />
+    );
+  } else {
+    notFound();
+  }
 
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-6 sm:pt-12">
@@ -72,10 +90,17 @@ export default async function LeaderboardPage({
           {name}@{version} Leaderboard
         </h2>
         {codeBlock}
-        <LeaderboardCP
-          rows={rows}
-          className="-mx-4 md:mx-0"
-        />
+        {leaderboard.type === "cp" ? (
+          <LeaderboardCP
+            rows={rows}
+            className="-mx-4 md:mx-0"
+          />
+        ) : (
+          <LeaderboardResearch
+            rows={rows}
+            className="-mx-4 md:mx-0"
+          />
+        )}
       </div>
     </div>
   );

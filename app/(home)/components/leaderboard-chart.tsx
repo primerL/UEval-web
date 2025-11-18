@@ -33,7 +33,8 @@ interface LeaderboardChartProps extends React.ComponentProps<"div"> {
 export function LeaderboardChart({
   className,
   data,
-  title = "Algorithmic Track",
+  title = "Algorithmic",
+  version = "1.0",
   ...props
 }: LeaderboardChartProps) {
   const refinedData = [...data]
@@ -54,7 +55,7 @@ export function LeaderboardChart({
       <CardHeader className="flex flex-row items-center justify-between">
         <p className="font-mono text-sm">{title}</p>
         <Link
-          href="/leaderboard"
+          href={`/leaderboard/${title}/${version}`}
           className={cn(
             buttonVariants({
               variant: "link",
