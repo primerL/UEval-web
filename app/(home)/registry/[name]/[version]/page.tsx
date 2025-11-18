@@ -10,6 +10,7 @@ import {
 import { CodeBlock } from "@/components/ui/code-block";
 import { createClient } from "@/lib/supabase/authless-server";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { FilterableTaskGrid } from "./components/filterable-task-grid";
 
 export async function generateStaticParams() {
@@ -65,7 +66,9 @@ export default async function Dataset({
         </h2>
         <CodeBlock code={runCommand} lang="bash" className="mt-0 font-mono" />
         {tasks.length > 0 ? (
-          <FilterableTaskGrid tasks={tasks} />
+          <Suspense fallback={<p className="text-muted-foreground font-mono sm:text-sm">Loading tasks...</p>}>
+            <FilterableTaskGrid tasks={tasks} />
+          </Suspense>
         ) : (
           <p className="text-muted-foreground font-mono sm:text-sm">
             Tasks have not been uploaded yet.

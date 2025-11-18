@@ -4,21 +4,13 @@ import Link from "next/link";
 import { CopyTaskId } from "./copy-task-id";
 
 interface TaskHeaderProps {
-  id: string;
-  githubUrl: string;
+  name: string;
   category: string;
-  difficulty: string;
-  dataset_name: string;
-  dataset_version: string;
 }
 
 export function TaskHeader({
   name,
-  // githubUrl,
   category,
-  // difficulty,
-  // dataset_name,
-  // dataset_version,
 }: TaskHeaderProps) {
   return (
     <div className="space-y-4">

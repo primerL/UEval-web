@@ -12,32 +12,25 @@ export const searchParams = {
 export const loadSearchParams = createLoader(searchParams);
 
 export const filterTasks = (
-  tasks: (Tables<"task"> & { registry: Tables<"registry"> })[],
+  tasks: Tables<"task">[],
   query: string,
   categories: Set<string>,
   tags: Set<string>,
   difficulties: Set<string>,
 ) => {
   return tasks.filter((task) => {
+    const taskName = task["task-name"]?.toLowerCase() ?? "";
+    const taskDescription = task["task-description"]?.toLowerCase() ?? "";
+    const taskCategory = task["task-category"] ?? "uncategorized";
+
     const matchesSearch =
       query === "" ||
-      task.id.toLowerCase().includes(query.toLowerCase()) ||
-      task.author_name.toLowerCase().includes(query.toLowerCase()) ||
-      task.instruction.toLowerCase().includes(query.toLowerCase()) ||
-      task.category.toLowerCase().includes(query.toLowerCase()) ||
-      task.tags.some((tag) => tag.toLowerCase().includes(query.toLowerCase()));
+      taskName.includes(query.toLowerCase()) ||
+      taskDescription.includes(query.toLowerCase());
 
     const matchesCategories =
-      categories.size === 0 || categories.has(task.category);
+      categories.size === 0 || categories.has(taskCategory);
 
-    const matchesTags =
-      tags.size === 0 || task.tags.some((tag) => tags.has(tag));
-
-    const matchesDifficulties =
-      difficulties.size === 0 || difficulties.has(task.difficulty);
-
-    return (
-      matchesSearch && matchesCategories && matchesTags && matchesDifficulties
-    );
+    return matchesSearch && matchesCategories;
   });
 };

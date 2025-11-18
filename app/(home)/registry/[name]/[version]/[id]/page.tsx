@@ -10,7 +10,6 @@ import {
 import { createClient } from "@/lib/supabase/authless-server";
 import { unstable_cache } from "next/cache";
 import { SearchParams } from "nuqs";
-import { buildTaskGithubUrl } from "../../../lib/utils";
 import { TaskDemo } from "./components/task-demo";
 import { TaskHeader } from "./components/task-header";
 import { TaskInstruction } from "./components/task-instruction";
@@ -91,11 +90,11 @@ export default async function Task({ params }: PageProps) {
         </Breadcrumb> */}
         {/* TODO: Change task format */}
         <TaskHeader
-          name={task["task-name"]}
-          category={task["task-category"]}
+          name={task["task-name"] ?? "Untitled Task"}
+          category={task["task-category"] ?? "uncategorized"}
         />
         <TaskInstruction
-          instruction={task["task-description"]}
+          instruction={task["task-description"] ?? "No description available"}
         />
         {task["author-name"] !== "unknown" && task["author-name"] !== "anonymous" && (
           <p className="text-muted-foreground font-mono text-sm">

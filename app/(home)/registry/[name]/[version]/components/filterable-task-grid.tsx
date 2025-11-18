@@ -9,7 +9,7 @@ import { TaskGrid } from "./task-grid";
 import { FilterOption, TaskToolbar } from "./task-toolbar";
 
 interface FilterableTaskGridProps {
-  tasks: (Tables<"task"> & { registry: Tables<"registry"> })[];
+  tasks: Tables<"task">[];
 }
 
 export function FilterableTaskGrid({ tasks }: FilterableTaskGridProps) {
@@ -21,34 +21,16 @@ export function FilterableTaskGrid({ tasks }: FilterableTaskGridProps) {
     "categories",
     parseAsSetOfStrings.withDefault(new Set()),
   );
-  const [selectedTags, setSelectedTags] = useQueryState(
-    "tags",
-    parseAsSetOfStrings.withDefault(new Set()),
-  );
-  const [selectedDifficulties, setSelectedDifficulties] = useQueryState(
-    "difficulties",
-    parseAsSetOfStrings.withDefault(new Set()),
-  );
 
-  const { categories, tags, difficulties } = useMemo(() => {
+  const { categories } = useMemo(() => {
     return tasks.reduce(
       (acc, task) => {
-        acc.categories[task.category] =
-          (acc.categories[task.category] ?? 0) + 1;
-
-        acc.difficulties[task.difficulty] =
-          (acc.difficulties[task.difficulty] ?? 0) + 1;
-
-        task.tags.forEach((tag) => {
-          acc.tags[tag] = (acc.tags[tag] ?? 0) + 1;
-        });
-
+        const category = task["task-category"] ?? "uncategorized";
+        acc.categories[category] = (acc.categories[category] ?? 0) + 1;
         return acc;
       },
       {
         categories: {} as Record<string, number>,
-        tags: {} as Record<string, number>,
-        difficulties: {} as Record<string, number>,
       },
     );
   }, [tasks]);
@@ -61,36 +43,25 @@ export function FilterableTaskGrid({ tasks }: FilterableTaskGridProps) {
     [categories],
   );
 
-  const tagOptions: FilterOption[] = useMemo(
-    () =>
-      Object.entries(tags)
-        .map(([label, count]) => ({ label, count }))
-        .sort((a, b) => b.count - a.count),
-    [tags],
-  );
-
-  const difficultyOptions: FilterOption[] = useMemo(() => {
-    const order = ["easy", "medium", "hard"];
-    return order
-      .filter((level) => difficulties[level])
-      .map((label) => ({ label, count: difficulties[label] }));
-  }, [difficulties]);
-
   const filteredTasks = useMemo(() => {
-    return filterTasks(
-      tasks,
-      searchQuery,
-      selectedCategories,
-      selectedTags,
-      selectedDifficulties,
-    );
-  }, [
-    tasks,
-    searchQuery,
-    selectedCategories,
-    selectedTags,
-    selectedDifficulties,
-  ]);
+    return tasks.filter((task) => {
+      const taskName = task["task-name"]?.toLowerCase() ?? "";
+      const taskDescription = task["task-description"]?.toLowerCase() ?? "";
+      const taskCategory = task["task-category"] ?? "uncategorized";
+
+      // Filter by search query
+      if (searchQuery && !taskName.includes(searchQuery.toLowerCase()) && !taskDescription.includes(searchQuery.toLowerCase())) {
+        return false;
+      }
+
+      // Filter by category
+      if (selectedCategories.size > 0 && !selectedCategories.has(taskCategory)) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [tasks, searchQuery, selectedCategories]);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -98,14 +69,6 @@ export function FilterableTaskGrid({ tasks }: FilterableTaskGridProps) {
 
   const handleCategoryChange = (categories: Set<string>) => {
     setSelectedCategories(categories);
-  };
-
-  const handleTagChange = (tags: Set<string>) => {
-    setSelectedTags(tags);
-  };
-
-  const handleDifficultyChange = (difficulties: Set<string>) => {
-    setSelectedDifficulties(difficulties);
   };
 
   return (
@@ -116,17 +79,10 @@ export function FilterableTaskGrid({ tasks }: FilterableTaskGridProps) {
         </p>
         <button
           className="text-primary disabled:text-muted-foreground font-mono text-sm font-normal underline-offset-4 hover:underline disabled:hover:no-underline"
-          disabled={
-            selectedDifficulties.size === 0 &&
-            selectedCategories.size === 0 &&
-            selectedTags.size === 0 &&
-            searchQuery === ""
-          }
+          disabled={selectedCategories.size === 0 && searchQuery === ""}
           onClick={() => {
             setSearchQuery(null);
             setSelectedCategories(null);
-            setSelectedTags(null);
-            setSelectedDifficulties(null);
           }}
         >
           Clear filters
@@ -136,14 +92,14 @@ export function FilterableTaskGrid({ tasks }: FilterableTaskGridProps) {
         searchQuery={searchQuery}
         onSearch={handleSearch}
         categories={categoryOptions}
-        tags={tagOptions}
-        difficulties={difficultyOptions}
+        tags={[]}
+        difficulties={[]}
         selectedCategories={new Set(selectedCategories)}
-        selectedTags={new Set(selectedTags)}
-        selectedDifficulties={new Set(selectedDifficulties)}
+        selectedTags={new Set()}
+        selectedDifficulties={new Set()}
         onCategoryChange={handleCategoryChange}
-        onTagChange={handleTagChange}
-        onDifficultyChange={handleDifficultyChange}
+        onTagChange={() => {}}
+        onDifficultyChange={() => {}}
       />
       <TaskGrid tasks={filteredTasks} behavior="filter" />
       <div className="flex flex-col px-4 sm:px-0">

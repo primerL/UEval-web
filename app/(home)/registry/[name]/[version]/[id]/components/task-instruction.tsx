@@ -3,12 +3,10 @@ import { Section } from "./section";
 
 interface TaskInstructionProps {
   instruction: string;
-  encrypted: boolean;
 }
 
 export function TaskInstruction({
   instruction,
-  // encrypted,
 }: TaskInstructionProps) {
   return (
     <Section title="Instruction">
