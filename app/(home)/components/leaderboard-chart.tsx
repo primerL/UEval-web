@@ -28,6 +28,7 @@ const chartConfig = {
 interface LeaderboardChartProps extends React.ComponentProps<"div"> {
   data: LeaderboardCPEntry[] | LeaderboardResearchEntry[];
   title?: string;
+  version?: string;
 }
 
 export function LeaderboardChart({

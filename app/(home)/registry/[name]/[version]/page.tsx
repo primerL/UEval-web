@@ -12,6 +12,12 @@ import { createClient } from "@/lib/supabase/authless-server";
 import { notFound } from "next/navigation";
 import { FilterableTaskGrid } from "./components/filterable-task-grid";
 
+export async function generateStaticParams() {
+  return [
+    { name: 'FrontierCS', version: '1.0' },
+  ];
+}
+
 export default async function Dataset({
   params,
 }: {

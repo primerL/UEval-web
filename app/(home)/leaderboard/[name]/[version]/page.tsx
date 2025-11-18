@@ -19,6 +19,13 @@ type LeaderboardPageProps = {
   }>;
 };
 
+export async function generateStaticParams() {
+  return [
+    { name: 'Algorithmic', version: '1.0' },
+    { name: 'Research', version: '1.0' },
+  ];
+}
+
 export default async function LeaderboardPage({
   params,
 }: LeaderboardPageProps) {

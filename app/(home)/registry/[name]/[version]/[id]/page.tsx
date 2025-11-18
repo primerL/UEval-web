@@ -44,6 +44,22 @@ const getTask = async ({ id }: { id: string }) => {
   return task;
 };
 
+export async function generateStaticParams() {
+  const supabase = await createClient();
+  const { data: tasks } = await supabase
+    .from("task")
+    .select("id");
+
+  if (!tasks) {
+    return [];
+  }
+
+  return tasks.map((task) => ({
+    name: 'FrontierCS',
+    version: '1.0',
+    id: task.id.toString(),
+  }));
+}
 
 export default async function Task({ params }: PageProps) {
   const { id, name, version } = await params;
