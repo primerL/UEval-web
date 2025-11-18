@@ -13,8 +13,9 @@ export const baseOptions: BaseLayoutProps = {
     title: (
       <div className="flex items-center gap-2">
         <Terminal className="size-4" />
+        {/* TODO: Change logo and name */}
         <p className="font-mono text-base font-medium tracking-tight">
-          terminal-bench
+          FrontierCS
         </p>
       </div>
     ),
