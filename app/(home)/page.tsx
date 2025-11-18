@@ -70,7 +70,7 @@ export default async function Tasks() {
             </p>
           </div> */}
         </div>
-        <div className="flex w-full flex-col items-center py-12">
+        <div className="flex w-full flex-col items-center py-12 gap-12">
           <Link
           // TODO: arxiv link
             href="https://arxiv.org/abs/2506.11928"
@@ -155,9 +155,10 @@ export default async function Tasks() {
               </a>
             </p>
         </div>
-        <div className="flex flex-1 flex-col justify-end">
+        {/* TODO: Add canary string here */}
+        {/* <div className="flex flex-1 flex-col justify-end">
           <CanaryString />
-        </div>
+        </div> */}
       </div>
     </div>
   );
