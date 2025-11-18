@@ -43,20 +43,6 @@ export default async function Tasks() {
               FrontierCS is a benchmark of open-ended problems across diverse areas of computer science.
             </p>
           </div>
-          <Link
-          // TODO: arxiv link
-            href="https://arxiv.org/abs/2506.11928"
-            className={cn(
-              "font-mono",
-              buttonVariants({
-                variant: "secondary",
-                size: "xl",
-                className: "rounded-none",
-              }),
-            )}
-          >
-            read our paper ↗
-          </Link>
           {/* <div className="mx-auto flex max-w-3xl flex-col gap-4 md:flex-row md:gap-2">
             <Callout
               className="flex-1"
@@ -85,6 +71,20 @@ export default async function Tasks() {
           </div> */}
         </div>
         <div className="flex w-full flex-col items-center py-12">
+          <Link
+          // TODO: arxiv link
+            href="https://arxiv.org/abs/2506.11928"
+            className={cn(
+              "font-mono",
+              buttonVariants({
+                variant: "secondary",
+                size: "xl",
+                className: "rounded-none",
+              }),
+            )}
+          >
+            read our paper ↗
+          </Link>
           {/* <div className="mb-6 flex flex-col items-center gap-2">
             <p className="font-mono text-sm">view model performance</p>
             <ChevronDown className="animate-float size-4" />
@@ -140,7 +140,7 @@ export default async function Tasks() {
             <ChevronDown className="animate-float size-4" />
             {/* TODO: Add form here */}
             TODO: add submit guide here
-          </div>
+        </div>
         <div className="flex flex-1 flex-col justify-end">
           <CanaryString />
         </div>

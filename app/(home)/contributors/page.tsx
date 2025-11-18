@@ -31,7 +31,7 @@ export default function TeamPage() {
         <h2 className="mb-6 font-mono text-4xl tracking-tighter sm:mb-12">
           Contributors
         </h2>
-        <p className="text-muted-foreground mb-12 font-mono text-base/relaxed sm:text-base/relaxed">
+        {/* <p className="text-muted-foreground mb-12 font-mono text-base/relaxed sm:text-base/relaxed">
           We're looking for more contributors! If you are interested in
           collaborating please see our{" "}
           <Link
@@ -41,7 +41,7 @@ export default function TeamPage() {
             contributing page
           </Link>
           .
-        </p>
+        </p> */}
         <div className="-mx-4 grid grid-cols-1 items-stretch sm:mx-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {CONTRIBUTORS.map(({ name, link, role }, index) => (
             <Link href={link} key={name} className="flex flex-col">
@@ -60,16 +60,14 @@ export default function TeamPage() {
           </h2>
           <div className="space-y-4">
             <p className="text-muted-foreground font-mono text-sm/relaxed">
-              Built with support from the Microsoft Grant in Customer Experience
-              Innovation.
+              We thank Ce Jin, Mingrui Liu, Youliang Yuan, and Qingyu Shi for valuable discussions and feedback on the benchmark's design and evaluation.
+            </p>
+            {/* <p className="text-muted-foreground font-mono text-sm/relaxed">
+              TODO: Acknowledgements
             </p>
             <p className="text-muted-foreground font-mono text-sm/relaxed">
-              In collaboration with Laude Institute.
-            </p>
-            <p className="text-muted-foreground font-mono text-sm/relaxed">
-              Thanks for feedback from the teams at OpenHands, Anthropic,
-              Cognition, Aider, Goose, Manus, and Replit.
-            </p>
+              TODO: Acknowledgements
+            </p> */}
           </div>
         </div>
       </div>
