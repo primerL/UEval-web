@@ -1,4 +1,6 @@
 import { Lock } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Section } from "./section";
 
 interface TaskInstructionProps {
@@ -22,9 +24,11 @@ export function TaskInstruction({
           {instruction}
         </p>
       )} */}
-      <p className="font-mono wrap-anywhere whitespace-pre-wrap sm:text-sm">
-        {instruction}
-      </p>
+      <div className="prose prose-sm dark:prose-invert max-w-none font-mono wrap-anywhere">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {instruction}
+        </ReactMarkdown>
+      </div>
     </Section>
   );
 }
