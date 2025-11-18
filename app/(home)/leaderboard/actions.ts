@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/authless-server";
 
 export type LeaderboardCPEntry = {
   id: number;
-  model_name: string;
+  model_name: string | null;
   "pass@1": number | null;
   "pass@5": number | null;
   "score@1": number | null;
@@ -15,7 +15,7 @@ export type LeaderboardCPEntry = {
 
 export type LeaderboardResearchEntry = {
   id: number;
-  model_name: string;
+  model_name: string | null;
   "pass@1": number | null;
   "score@1": number | null;
   created_at: string;
