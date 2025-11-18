@@ -20,14 +20,14 @@ export const baseOptions: BaseLayoutProps = {
     ),
   },
   links: [
-    {
-      text: "Run Terminal-Bench",
-      url: "https://harborframework.com/docs/running-tbench",
-      active: "nested-url",
-    },
+    // {
+    //   text: "Run Terminal-Bench",
+    //   url: "https://harborframework.com/docs/running-tbench",
+    //   active: "nested-url",
+    // },
     {
       text: "Leaderboard",
-      url: "/leaderboard/terminal-bench/2.0",
+      url: "/leaderboard",
       active: "nested-url",
     },
     {
@@ -35,11 +35,11 @@ export const baseOptions: BaseLayoutProps = {
       url: "/contributors",
       active: "nested-url",
     },
-    {
-      text: "News",
-      url: "/news",
-      active: "nested-url",
-    },
+    // {
+    //   text: "News",
+    //   url: "/news",
+    //   active: "nested-url",
+    // },
     //   text: "Discord",
     //   url: "https://discord.gg/6xWPKhGDbA",
     //   external: true,
