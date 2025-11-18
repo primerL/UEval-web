@@ -4,7 +4,7 @@ export default function Page() {
 
   const logoPath = path.join(process.cwd(), "app", "assets", "ascii-logo.txt");
   const asciiLogo = fs.readFileSync(logoPath, "utf8");
-
+// TODO: Change logo
   return (
     <div className="mx-auto p-24">
       <div className="flex h-[630px] w-[1200px] items-center justify-center">
