@@ -108,18 +108,18 @@ export function DataTable<TData, TValue>({
         
         {/* TODO: Change email */}
         <p>
-          Send us an email to submit your agents' results:{" "}
+          Send us an email to submit your results:{" "}
           <a
-            href="mailto:alex@laude.org"
+            href="mailto:qmang@berkeley.edu"
             className="text-foreground underline underline-offset-4"
           >
-            alex@laude.org
+            qmang@berkeley.edu
           </a>{" "}
           <a
-            href="mailto:mikeam@cs.stanford.edu"
+            href="mailto:wenhao.chai@princeton.edu"
             className="text-foreground underline underline-offset-4"
           >
-            mikeam@cs.stanford.edu
+            wenhao.chai@princeton.edu
           </a>
         </p>
         

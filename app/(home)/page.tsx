@@ -139,7 +139,21 @@ export default async function Tasks() {
             </p>
             <ChevronDown className="animate-float size-4" />
             {/* TODO: Add form here */}
-            TODO: add submit guide here
+            <p>
+              Send us an email to submit your results:{" "}
+              <a
+                href="mailto:qmang@berkeley.edu"
+                className="text-foreground underline underline-offset-4"
+              >
+                qmang@berkeley.edu
+              </a>{" "}
+              <a
+                href="mailto:wenhao.chai@princeton.edu"
+                className="text-foreground underline underline-offset-4"
+              >
+                wenhao.chai@princeton.edu
+              </a>
+            </p>
         </div>
         <div className="flex flex-1 flex-col justify-end">
           <CanaryString />
