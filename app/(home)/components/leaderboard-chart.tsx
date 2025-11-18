@@ -107,7 +107,7 @@ export function LeaderboardChart({
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              width={300}
+              width={200}
             />
             <XAxis
               type="number"

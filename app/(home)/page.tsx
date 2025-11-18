@@ -37,14 +37,13 @@ export default async function Tasks() {
         <div className="flex flex-col justify-center gap-16 sm:pt-24 sm:pb-0">
           <div className="space-y-8">
             <h2 className="text-center font-mono text-3xl/tight font-medium tracking-tighter text-balance sm:mb-8 sm:text-6xl/tight">
-              terminal-bench: a benchmark for ai agents in terminal environments
+              FrontierCS: The Next Frontier of Computer Science
             </h2>
             <p className="text-fd-muted-foreground text-center font-mono tracking-tight text-balance sm:text-xl/relaxed">
-              terminal-bench is a collection of tasks and an evaluation harness
-              to help agent makers quantify their agents' terminal mastery.
+              FrontierCS a benchmark of open-ended problems across diverse areas of computer science.
             </p>
           </div>
-          <div className="mx-auto flex max-w-3xl flex-col gap-4 md:flex-row md:gap-2">
+          {/* <div className="mx-auto flex max-w-3xl flex-col gap-4 md:flex-row md:gap-2">
             <Callout
               className="flex-1"
               title="introducing terminal-bench 2.0 and harbor"
@@ -52,8 +51,8 @@ export default async function Tasks() {
               href="/news/announcement-2-0"
               icon={Terminal}
             />
-          </div>
-          <div className="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2">
+          </div> */}
+          {/* <div className="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2">
             <Link
               href="https://harborframework.com/docs/running-tbench"
               className={cn(
@@ -63,19 +62,19 @@ export default async function Tasks() {
             >
               i want to test my agent
             </Link>
+          </div> */}
 
-          </div>
-          <div className="mx-auto flex max-w-xl flex-col justify-center gap-4">
+          {/* <div className="mx-auto flex max-w-xl flex-col justify-center gap-4">
             <p className="text-center font-mono text-sm sm:text-base">
               a stanford x laude collaboration
             </p>
-          </div>
+          </div> */}
         </div>
         <div className="flex w-full flex-col items-center py-12">
-          <div className="mb-6 flex flex-col items-center gap-2">
+          {/* <div className="mb-6 flex flex-col items-center gap-2">
             <p className="font-mono text-sm">view model performance</p>
             <ChevronDown className="animate-float size-4" />
-          </div>
+          </div> */}
           <div className="grid w-full grid-cols-1 gap-4 mb-16 lg:grid-cols-2">
             <LeaderboardChart className="-mx-4 sm:mx-0" data={cpLeaderboard} title="Algorithmic Track" />
             <LeaderboardChart className="-mx-4 sm:mx-0" data={researchLeaderboard} title="Research Track" />
@@ -97,7 +96,7 @@ export default async function Tasks() {
         <div className="flex min-h-[90vh] flex-col justify-center py-12 sm:pb-16">
           <div className="mb-4 flex flex-col items-center gap-2">
             <p className="font-mono text-sm">
-              view terminal-bench task examples
+              view FrontierCS problems
             </p>
             <ChevronDown className="animate-float size-4" />
           </div>
@@ -115,7 +114,7 @@ export default async function Tasks() {
                   }),
                 )}
               >
-                view all terminal-bench tasks ↗
+                view all FrontierCS problems ↗
               </Link>
             </div>
           )}
