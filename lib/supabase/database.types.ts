@@ -151,21 +151,27 @@ export type Database = {
       }
       task: {
         Row: {
+          answer_image: string | null
           created_at: string
+          gt_image: string | null
           id: number
           "task-category": string | null
           "task-description": string | null
           "task-name": string | null
         }
         Insert: {
+          answer_image?: string | null
           created_at?: string
+          gt_image?: string | null
           id?: number
           "task-category"?: string | null
           "task-description"?: string | null
           "task-name"?: string | null
         }
         Update: {
+          answer_image?: string | null
           created_at?: string
+          gt_image?: string | null
           id?: number
           "task-category"?: string | null
           "task-description"?: string | null

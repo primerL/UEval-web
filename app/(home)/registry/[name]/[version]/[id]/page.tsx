@@ -12,6 +12,7 @@ import { unstable_cache } from "next/cache";
 import { SearchParams } from "nuqs";
 import { TaskDemo } from "./components/task-demo";
 import { TaskHeader } from "./components/task-header";
+import { TaskImage } from "./components/task-image";
 import { TaskInstruction } from "./components/task-instruction";
 import { TaskTags } from "./components/task-tags";
 import { TaskUsage } from "./components/task-usage";
@@ -96,14 +97,28 @@ export default async function Task({ params }: PageProps) {
         <TaskInstruction
           instruction={task["task-description"] ?? "No description available"}
         />
+        {(task?.gt_image || task?.answer_image) && (
+          <div className="grid gap-4 sm:grid-cols-2">
+            <TaskImage
+              data={task?.gt_image}
+              alt="Ground truth image"
+              label="reference (ground truth) image"
+            />
+            <TaskImage
+              data={task?.answer_image}
+              alt="Answer image"
+              label="model generated image"
+            />
+          </div>
+        )}
         {/* {task["author-name"] !== "unknown" && task["author-name"] !== "anonymous" && (
           <p className="text-muted-foreground font-mono text-sm">
             Created by {task["author-name"]}
           </p>
         )} */}
-        <div className="flex flex-1 flex-col justify-end">
+        {/* <div className="flex flex-1 flex-col justify-end">
           <CanaryString />
-        </div>
+        </div> */}
       </div>
     </div>
   );
