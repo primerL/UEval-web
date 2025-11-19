@@ -10,6 +10,8 @@ import { LeaderboardChart } from "./components/leaderboard-chart";
 import { getLeaderboard } from "./leaderboard/actions";
 import { TaskGrid } from "./registry/[name]/[version]/components/task-grid";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "/ueval";
+
 const getTasks = async () => {
   const supabase = await createClient();
   const { data: tasks, error } = await supabase
@@ -101,10 +103,11 @@ export default async function Tasks() {
           </div>
 
           <figure className="w-full">
-            <img src="/og.png" alt="" className="w-full" />
+            <img src={`${basePath}/og.png`} alt="teaser" className="w-full" />
             <figcaption className="mt-2 text-left text-xs font-mono text-muted-foreground space-y-1">
               <p>Priel im Winter (Tidal Channel in Winter), 1960s</p>
               <p>Hans Grohs, 1892-1981; born Dithmarschen, Germany; died Heide, Germany</p>
+              <p>Courtesy of the Princeton University Art Museum. Used with permission.</p>
             </figcaption>
           </figure>
 
