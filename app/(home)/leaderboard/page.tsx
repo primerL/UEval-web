@@ -2,24 +2,7 @@ import { Grid, GridItem } from "@/components/grid";
 import { Badge } from "@/components/ui/badge";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-
-type Leaderboard = {
-  name: string;
-  version: string;
-  description: string;
-  dataSource: "harbor" | "static";
-  entryCount?: number;
-};
-
-const leaderboards: Leaderboard[] = [
-  {
-    name: "Full-Leaderboard",
-    version: "1.0",
-    description:
-      "The full leaderboard for UEval, covering all domains and tasks.",
-    dataSource: "static",
-  },
-];
+import { leaderboards } from "./leaderboards";
 
 export default async function LeaderboardsPage() {
   return (

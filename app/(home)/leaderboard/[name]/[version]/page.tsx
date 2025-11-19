@@ -9,6 +9,7 @@ import {
 import { CodeBlock } from "@/components/ui/code-block";
 import { getLeaderboard } from "../../actions";
 import { LeaderboardCP } from "../../components/leaderboard-cp";
+import { leaderboards } from "../../leaderboards";
 import { notFound } from "next/navigation";
 
 type LeaderboardPageProps = {
@@ -19,29 +20,22 @@ type LeaderboardPageProps = {
 };
 
 export async function generateStaticParams() {
-  return [
-    { name: 'Algorithmic', version: '1.0' },
-  ];
+  return leaderboards.map(({ name, version }) => ({ name, version }));
 }
 
 export default async function LeaderboardPage({
   params,
 }: LeaderboardPageProps) {
-  const { name, version } = await params;
-
-  // Validate the leaderboard exists
-  const validLeaderboards = [
-    { name: "Algorithmic", version: "1.0", type: "cp" as const },
-  ];
-
-  const leaderboard = validLeaderboards.find(
-    (lb) => lb.name === name && lb.version === version,
+  const resolvedParams = await params;
+  const leaderboard = leaderboards.find(
+    (lb) => lb.name === resolvedParams.name && lb.version === resolvedParams.version,
   );
 
   if (!leaderboard) {
     notFound();
   }
 
+  const { name, version } = leaderboard;
   const rows = await getLeaderboard();
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-6 sm:pt-12">
@@ -68,8 +62,8 @@ export default async function LeaderboardPage({
         </h2>
         <CodeBlock
           lang="bash"
-          title="Algorithmic Problems"
-          code={`# Covering Optimization tasks, Constructive tasks, and Interactive tasks`}
+          title={`${name} overview`}
+          code={`# ${leaderboard.description}`}
           className="mb-6 font-mono"
         />
         <LeaderboardCP
