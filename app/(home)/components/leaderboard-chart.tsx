@@ -16,17 +16,17 @@ import { cn } from "@/lib/utils";
 import { useWindowWidth } from "@react-hook/window-size";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { LeaderboardCPEntry, LeaderboardResearchEntry } from "../leaderboard/actions";
+import { LeaderboardEntry } from "../leaderboard/actions";
 
 const chartConfig = {
-  score: {
-    label: "Score@1",
+  Avg: {
+    label: "Avg",
     color: "var(--primary)",
   },
 } satisfies ChartConfig;
 
 interface LeaderboardChartProps extends React.ComponentProps<"div"> {
-  data: LeaderboardCPEntry[] | LeaderboardResearchEntry[];
+  data: LeaderboardEntry[];
   title?: string;
   version?: string;
 }
@@ -39,8 +39,8 @@ export function LeaderboardChart({
   ...props
 }: LeaderboardChartProps) {
   const refinedData = [...data]
-    .filter((entry) => entry["score@1"] !== null)
-    .sort((a, b) => (b["score@1"] || 0) - (a["score@1"] || 0))
+    .filter((entry) => entry.Avg !== null)
+    .sort((a, b) => (b.Avg || 0) - (a.Avg || 0))
     .slice(0, 10);
 
   const width = useWindowWidth();
@@ -90,7 +90,7 @@ export function LeaderboardChart({
                 <ChartTooltipContent className="rounded-none font-mono" />
               }
             />
-            <Bar dataKey="score@1" radius={0} fill="var(--color-score)">
+            <Bar dataKey="Avg" radius={0} fill="var(--color-Avg)">
               <LabelList
                 position={width > 768 ? "insideLeft" : "right"}
                 offset={width > 768 ? 8 : width > 640 ? 42 : 12}
@@ -99,7 +99,7 @@ export function LeaderboardChart({
                   width < 768 && "fill-foreground",
                 )}
                 fontSize={12}
-                formatter={(value: number) => `${(value * 100).toFixed(1)}%`}
+                formatter={(value: number) => value.toFixed(1)}
               />
             </Bar>
             <YAxis
@@ -113,7 +113,7 @@ export function LeaderboardChart({
             />
             <XAxis
               type="number"
-              tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
+              tickFormatter={(value) => value.toFixed(0)}
               tickLine={false}
               axisLine={false}
               hide

@@ -1,62 +1,24 @@
 import { createClient } from "@/lib/supabase/authless-server";
+import { Tables } from "@/lib/supabase/database.types";
 
-export type LeaderboardCPEntry = {
-  id: number;
-  model_name: string | null;
-  "pass@1": number | null;
-  "pass@5": number | null;
-  "score@1": number | null;
-  "score@5": number | null;
-  "avg@5": number | null;
-  created_at: string;
-};
+export type LeaderboardEntry = Tables<"leaderboard">;
 
-export type LeaderboardResearchEntry = {
-  id: number;
-  model_name: string | null;
-  "pass@1": number | null;
-  "score@1": number | null;
-  created_at: string;
-};
-
-export async function getCPLeaderboard(): Promise<LeaderboardCPEntry[]> {
+export async function getLeaderboard(): Promise<LeaderboardEntry[]> {
   const client = await createClient();
 
   const { data, error } = await client
-    .from("leaderboard-cp")
+    .from("leaderboard")
     .select("*");
 
   if (error) {
-    console.error("Error fetching CP leaderboard:", error);
+    console.error("Error fetching leaderboard:", error);
     return [];
   }
 
-  // Sort in JavaScript instead of using .order() due to @ symbol in column name
+  // Sort by Avg descending, with nulls last.
   const sorted = (data || []).sort((a, b) => {
-    const scoreA = a["score@1"] ?? -Infinity;
-    const scoreB = b["score@1"] ?? -Infinity;
-    return scoreB - scoreA;
-  });
-
-  return sorted;
-}
-
-export async function getResearchLeaderboard(): Promise<LeaderboardResearchEntry[]> {
-  const client = await createClient();
-
-  const { data, error } = await client
-    .from("leaderboard-research")
-    .select("*");
-
-  if (error) {
-    console.error("Error fetching Research leaderboard:", error);
-    return [];
-  }
-
-  // Sort in JavaScript instead of using .order() due to @ symbol in column name
-  const sorted = (data || []).sort((a, b) => {
-    const scoreA = a["score@1"] ?? -Infinity;
-    const scoreB = b["score@1"] ?? -Infinity;
+    const scoreA = a.Avg ?? -Infinity;
+    const scoreB = b.Avg ?? -Infinity;
     return scoreB - scoreA;
   });
 

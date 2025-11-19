@@ -1,6 +1,6 @@
 "use client";
 
-import { LeaderboardResearchEntry } from "../actions";
+import { LeaderboardEntry } from "../actions";
 import { researchColumns } from "./columns-research";
 import { DataTable } from "./data-table";
 
@@ -8,7 +8,7 @@ export function LeaderboardResearch({
   rows,
   className,
 }: {
-  rows: LeaderboardResearchEntry[];
+  rows: LeaderboardEntry[];
   className?: string;
 }) {
   return (

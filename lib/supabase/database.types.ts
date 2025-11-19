@@ -14,83 +14,158 @@ export type Database = {
   }
   public: {
     Tables: {
-      "leaderboard-cp": {
+      leaderboard: {
         Row: {
-          "avg@5": number | null
+          Art: number | null
+          Avg: number | null
           created_at: string
+          Diagram: number | null
+          Exercise: number | null
           id: number
+          Life: number | null
           model_name: string | null
-          "pass@1": number | null
-          "pass@5": number | null
-          "score@1": number | null
-          "score@5": number | null
+          Paper: number | null
+          Space: number | null
+          Tech: number | null
+          Textbook: number | null
         }
         Insert: {
-          "avg@5"?: number | null
+          Art?: number | null
+          Avg?: number | null
           created_at?: string
+          Diagram?: number | null
+          Exercise?: number | null
           id?: number
+          Life?: number | null
           model_name?: string | null
-          "pass@1"?: number | null
-          "pass@5"?: number | null
-          "score@1"?: number | null
-          "score@5"?: number | null
+          Paper?: number | null
+          Space?: number | null
+          Tech?: number | null
+          Textbook?: number | null
         }
         Update: {
-          "avg@5"?: number | null
+          Art?: number | null
+          Avg?: number | null
           created_at?: string
+          Diagram?: number | null
+          Exercise?: number | null
           id?: number
+          Life?: number | null
           model_name?: string | null
-          "pass@1"?: number | null
-          "pass@5"?: number | null
-          "score@1"?: number | null
-          "score@5"?: number | null
+          Paper?: number | null
+          Space?: number | null
+          Tech?: number | null
+          Textbook?: number | null
         }
         Relationships: []
       }
-      "leaderboard-research": {
+      "leaderboard-img": {
         Row: {
+          Art: number | null
+          Avg: number | null
           created_at: string
+          Diagram: number | null
+          Exercise: number | null
           id: number
+          Life: number | null
           model_name: string | null
-          "pass@1": number | null
-          "score@1": number | null
+          Paper: number | null
+          Space: number | null
+          Tech: number | null
+          Textbook: number | null
         }
         Insert: {
+          Art?: number | null
+          Avg?: number | null
           created_at?: string
+          Diagram?: number | null
+          Exercise?: number | null
           id?: number
+          Life?: number | null
           model_name?: string | null
-          "pass@1"?: number | null
-          "score@1"?: number | null
+          Paper?: number | null
+          Space?: number | null
+          Tech?: number | null
+          Textbook?: number | null
         }
         Update: {
+          Art?: number | null
+          Avg?: number | null
           created_at?: string
+          Diagram?: number | null
+          Exercise?: number | null
           id?: number
+          Life?: number | null
           model_name?: string | null
-          "pass@1"?: number | null
-          "score@1"?: number | null
+          Paper?: number | null
+          Space?: number | null
+          Tech?: number | null
+          Textbook?: number | null
+        }
+        Relationships: []
+      }
+      "leaderboard-txt": {
+        Row: {
+          Art: number | null
+          Avg: number | null
+          created_at: string
+          Diagram: number | null
+          Exercise: number | null
+          id: number
+          Life: number | null
+          model_name: string | null
+          Paper: number | null
+          Space: number | null
+          Tech: number | null
+          Textbook: number | null
+        }
+        Insert: {
+          Art?: number | null
+          Avg?: number | null
+          created_at?: string
+          Diagram?: number | null
+          Exercise?: number | null
+          id?: number
+          Life?: number | null
+          model_name?: string | null
+          Paper?: number | null
+          Space?: number | null
+          Tech?: number | null
+          Textbook?: number | null
+        }
+        Update: {
+          Art?: number | null
+          Avg?: number | null
+          created_at?: string
+          Diagram?: number | null
+          Exercise?: number | null
+          id?: number
+          Life?: number | null
+          model_name?: string | null
+          Paper?: number | null
+          Space?: number | null
+          Tech?: number | null
+          Textbook?: number | null
         }
         Relationships: []
       }
       task: {
         Row: {
-          "author-name": string | null
-          created_at: string | null
+          created_at: string
           id: number
           "task-category": string | null
           "task-description": string | null
           "task-name": string | null
         }
         Insert: {
-          "author-name"?: string | null
-          created_at?: string | null
-          id: number
+          created_at?: string
+          id?: number
           "task-category"?: string | null
           "task-description"?: string | null
           "task-name"?: string | null
         }
         Update: {
-          "author-name"?: string | null
-          created_at?: string | null
+          created_at?: string
           id?: number
           "task-category"?: string | null
           "task-description"?: string | null

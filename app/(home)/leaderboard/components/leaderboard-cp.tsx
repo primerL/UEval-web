@@ -1,6 +1,6 @@
 "use client";
 
-import { LeaderboardCPEntry } from "../actions";
+import { LeaderboardEntry } from "../actions";
 import { cpColumns } from "./columns-cp";
 import { DataTable } from "./data-table";
 
@@ -8,7 +8,7 @@ export function LeaderboardCP({
   rows,
   className,
 }: {
-  rows: LeaderboardCPEntry[];
+  rows: LeaderboardEntry[];
   className?: string;
 }) {
   return (

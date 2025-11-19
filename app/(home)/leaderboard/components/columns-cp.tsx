@@ -1,9 +1,12 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { LeaderboardCPEntry } from "../actions";
+import { LeaderboardEntry } from "../actions";
 
-export const cpColumns: ColumnDef<LeaderboardCPEntry>[] = [
+const formatScore = (value: number | null) =>
+  value !== null ? value.toFixed(1) : null;
+
+export const cpColumns: ColumnDef<LeaderboardEntry>[] = [
   {
     id: "rank",
     header: "Rank",
@@ -21,14 +24,14 @@ export const cpColumns: ColumnDef<LeaderboardCPEntry>[] = [
     },
   },
   {
-    id: "pass@1",
-    header: () => <p className="text-right">Pass@1</p>,
+    id: "Avg",
+    header: () => <p className="text-right">Avg</p>,
     cell: ({ row }) => {
-      const pass1 = row.original["pass@1"];
+      const value = formatScore(row.original.Avg);
       return (
         <p className="text-right">
-          {pass1 !== null ? (
-            <span className="font-bold">{(pass1 * 100).toFixed(1)}%</span>
+          {value !== null ? (
+            <span className="font-bold">{value}</span>
           ) : (
             <span className="text-muted-foreground">N/A</span>
           )}
@@ -36,70 +39,24 @@ export const cpColumns: ColumnDef<LeaderboardCPEntry>[] = [
       );
     },
   },
-  {
-    id: "pass@5",
-    header: () => <p className="text-right">Pass@5</p>,
-    cell: ({ row }) => {
-      const pass5 = row.original["pass@5"];
-      return (
-        <p className="text-right">
-          {pass5 !== null ? (
-            <span className="font-bold">{(pass5 * 100).toFixed(1)}%</span>
-          ) : (
-            <span className="text-muted-foreground">N/A</span>
-          )}
-        </p>
-      );
-    },
-  },
-  {
-    id: "score@1",
-    header: () => <p className="text-right">Score@1</p>,
-    cell: ({ row }) => {
-      const score1 = row.original["score@1"];
-      return (
-        <p className="text-right">
-          {score1 !== null ? (
-            <span className="font-bold">{(score1 * 100).toFixed(1)}%</span>
-          ) : (
-            <span className="text-muted-foreground">N/A</span>
-          )}
-        </p>
-      );
-    },
-  },
-  {
-    id: "score@5",
-    header: () => <p className="text-right">Score@5</p>,
-    cell: ({ row }) => {
-      const score5 = row.original["score@5"];
-      return (
-        <p className="text-right">
-          {score5 !== null ? (
-            <span className="font-bold">{(score5 * 100).toFixed(1)}%</span>
-          ) : (
-            <span className="text-muted-foreground">N/A</span>
-          )}
-        </p>
-      );
-    },
-  },
-  {
-    id: "avg@5",
-    header: () => <p className="text-right">Avg@5</p>,
-    cell: ({ row }) => {
-      const avg5 = row.original["avg@5"];
-      return (
-        <p className="text-right">
-          {avg5 !== null ? (
-            <span className="font-bold">{(avg5 * 100).toFixed(1)}%</span>
-          ) : (
-            <span className="text-muted-foreground">N/A</span>
-          )}
-        </p>
-      );
-    },
-  },
+  ...(["Art", "Diagram", "Exercise", "Life", "Paper", "Space", "Tech", "Textbook"] as const).map(
+    (field): ColumnDef<LeaderboardEntry> => ({
+      id: field,
+      header: () => <p className="text-right">{field}</p>,
+      cell: ({ row }) => {
+        const value = formatScore(row.original[field]);
+        return (
+          <p className="text-right">
+            {value !== null ? (
+              <span>{value}</span>
+            ) : (
+              <span className="text-muted-foreground">N/A</span>
+            )}
+          </p>
+        );
+      },
+    }),
+  ),
   {
     header: "Date",
     accessorKey: "created_at",

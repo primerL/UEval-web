@@ -7,7 +7,7 @@ import { unstable_cache } from "next/cache";
 import Link from "next/link";
 import { Callout } from "./components/callout";
 import { LeaderboardChart } from "./components/leaderboard-chart";
-import { getCPLeaderboard } from "./leaderboard/actions";
+import { getLeaderboard } from "./leaderboard/actions";
 import { TaskGrid } from "./registry/[name]/[version]/components/task-grid";
 
 const getTasks = async () => {
@@ -28,7 +28,7 @@ const getTasks = async () => {
 
 export default async function Tasks() {
   const tasks = await getTasks();
-  const cpLeaderboard = await getCPLeaderboard();
+  const leaderboard = await getLeaderboard();
 
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-6">
@@ -89,7 +89,7 @@ export default async function Tasks() {
             <ChevronDown className="animate-float size-4" />
           </div> */}
           <div className="w-full mb-16">
-            <LeaderboardChart className="-mx-4 sm:mx-0" data={cpLeaderboard} title="Algorithmic" version="1.0" />
+            <LeaderboardChart className="-mx-4 sm:mx-0" data={leaderboard} title="Algorithmic" version="1.0" />
           </div>
           <Link
             href="/leaderboard"

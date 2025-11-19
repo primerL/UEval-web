@@ -7,7 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { CodeBlock } from "@/components/ui/code-block";
-import { getCPLeaderboard } from "../../actions";
+import { getLeaderboard } from "../../actions";
 import { LeaderboardCP } from "../../components/leaderboard-cp";
 import { notFound } from "next/navigation";
 
@@ -42,7 +42,7 @@ export default async function LeaderboardPage({
     notFound();
   }
 
-  const rows = await getCPLeaderboard();
+  const rows = await getLeaderboard();
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-6 sm:pt-12">
       <div className="flex w-full max-w-7xl flex-col">
