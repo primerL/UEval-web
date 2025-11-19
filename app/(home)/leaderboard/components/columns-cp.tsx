@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { LeaderboardEntry } from "../actions";
 
 const formatScore = (value: number | null) =>
-  value !== null ? value.toFixed(1) : null;
+  value !== null ? `${(value * 100).toFixed(1)}%` : null;
 
 export const cpColumns: ColumnDef<LeaderboardEntry>[] = [
   {

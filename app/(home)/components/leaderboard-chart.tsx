@@ -99,7 +99,7 @@ export function LeaderboardChart({
                   width < 768 && "fill-foreground",
                 )}
                 fontSize={12}
-                formatter={(value: number) => value.toFixed(1)}
+                formatter={(value: number) => `${(value * 100).toFixed(1)}%`}
               />
             </Bar>
             <YAxis
@@ -113,7 +113,7 @@ export function LeaderboardChart({
             />
             <XAxis
               type="number"
-              tickFormatter={(value) => value.toFixed(0)}
+              tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
               tickLine={false}
               axisLine={false}
               hide

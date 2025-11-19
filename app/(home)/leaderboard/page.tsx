@@ -13,10 +13,10 @@ type Leaderboard = {
 
 const leaderboards: Leaderboard[] = [
   {
-    name: "Algorithmic",
+    name: "Full Leaderboard",
     version: "1.0",
     description:
-      "Algorithmic Problems, covering Optimization tasks, Constructive tasks, and Interactive tasks, adapted from programming contests but rewritten into open-ended, partially scored variants.",
+      "The full leaderboard for UEval, covering all domains and tasks.",
     dataSource: "static",
   },
 ];
