@@ -36,7 +36,7 @@ export default async function LeaderboardPage({
   }
 
   const { name, version } = leaderboard;
-  const rows = await getLeaderboard();
+  const rows = await getLeaderboard(leaderboard.dataSource);
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-6 sm:pt-12">
       <div className="flex w-full max-w-7xl flex-col">

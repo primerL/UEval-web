@@ -1,13 +1,14 @@
 import { createClient } from "@/lib/supabase/authless-server";
 import { Tables } from "@/lib/supabase/database.types";
 
-export type LeaderboardEntry = Tables<"leaderboard">;
+type SourceTable = "leaderboard" | "leaderboard-img" | "leaderboard-txt";
+export type LeaderboardEntry = Tables<SourceTable>;
 
-export async function getLeaderboard(): Promise<LeaderboardEntry[]> {
+export async function getLeaderboard(source: SourceTable = "leaderboard"): Promise<LeaderboardEntry[]> {
   const client = await createClient();
 
   const { data, error } = await client
-    .from("leaderboard")
+    .from(source)
     .select("*");
 
   if (error) {

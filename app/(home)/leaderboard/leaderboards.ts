@@ -2,7 +2,7 @@ export type LeaderboardMeta = {
   name: string;
   version: string;
   description: string;
-  dataSource: "harbor" | "static" | "leaderboard-img" | "leaderboard-txt";
+  dataSource: "leaderboard" | "leaderboard-img" | "leaderboard-txt";
   type: "cp";
 };
 
@@ -12,7 +12,7 @@ export const leaderboards: LeaderboardMeta[] = [
     version: "1.0",
     description:
       "The full leaderboard for UEval, covering all domains and tasks.",
-    dataSource: "static",
+    dataSource: "leaderboard",
     type: "cp",
   },
   {
@@ -20,7 +20,7 @@ export const leaderboards: LeaderboardMeta[] = [
     version: "1.0",
     description:
       "Leaderboard for UEval image generation evaluation.",
-    dataSource: "static",
+    dataSource: "leaderboard-img",
     type: "cp",
   },
   {
@@ -28,7 +28,7 @@ export const leaderboards: LeaderboardMeta[] = [
     version: "1.0",
     description:
       "Leaderboard for UEval text generation evaluation.",
-    dataSource: "static",
+    dataSource: "leaderboard-txt",
     type: "cp",
   },
 ];

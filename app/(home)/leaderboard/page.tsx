@@ -33,11 +33,9 @@ export default async function LeaderboardsPage() {
                   </div>
                   <div className="flex gap-2">
                     <Badge className="font-mono">{leaderboard.version}</Badge>
-                    {leaderboard.dataSource === "harbor" && (
-                      <Badge className="font-mono" variant="secondary">
-                        live
-                      </Badge>
-                    )}
+                    <Badge className="font-mono" variant="secondary">
+                      {leaderboard.dataSource}
+                    </Badge>
                   </div>
                 </CardHeader>
                 <CardContent className="flex flex-1 flex-col justify-between space-y-6">
