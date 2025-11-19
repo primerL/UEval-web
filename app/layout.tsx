@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "UEval: A Real-World Benchmark for Unified Multimodal Generation",
     description: "UEval is a challenging real-world benchmark for multimodal generation of unified models that are capable of generating both images and text.",
-    images: "/og/og.png",
+    images: "/og.png",
     url: "https://wenhaochai.com/ueval",
     siteName: "UEval",
     locale: "en_US",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: "UEval is a challenging real-world benchmark for multimodal generation of unified models that are capable of generating both images and text.",
     images: [
       {
-        url: "/og/og.png",
+        url: "/og.png",
         width: 1200,
         height: 630,
       },

@@ -70,24 +70,48 @@ export default async function Tasks() {
           </div> */}
         </div>
         <div className="flex w-full flex-col items-center py-12 gap-12">
-          <Link
-            // TODO: arxiv link
-            href="https://arxiv.org/abs/2506.11928"
-            className={cn(
-              "font-mono",
-              buttonVariants({
-                variant: "secondary",
-                size: "xl",
-                className: "rounded-none",
-              }),
-            )}
-          >
-            read our paper ↗
-          </Link>
-          {/* <div className="mb-6 flex flex-col items-center gap-2">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center">
+            <Link
+              // TODO: arxiv link
+              href="https://arxiv.org/abs/2506.11928"
+              className={cn(
+                "font-mono",
+                buttonVariants({
+                  variant: "secondary",
+                  size: "xl",
+                  className: "rounded-none",
+                }),
+              )}
+            >
+              read our paper ↗
+            </Link>
+            <Link
+              href="https://github.com/EvolvingLMMs-Lab/lmms-eval"
+              className={cn(
+                "font-mono",
+                buttonVariants({
+                  variant: "secondary",
+                  size: "xl",
+                  className: "rounded-none",
+                }),
+              )}
+            >
+              test with lmms-eval ↗
+            </Link>
+          </div>
+
+          <figure className="w-full">
+            <img src="/og.png" alt="" className="w-full" />
+            <figcaption className="mt-2 text-left text-xs font-mono text-muted-foreground space-y-1">
+              <p>Priel im Winter (Tidal Channel in Winter), 1960s</p>
+              <p>Hans Grohs, 1892-1981; born Dithmarschen, Germany; died Heide, Germany</p>
+            </figcaption>
+          </figure>
+
+          <div className="mb-6 flex flex-col items-center gap-2">
             <p className="font-mono text-sm">view model performance</p>
             <ChevronDown className="animate-float size-4" />
-          </div> */}
+          </div>
           <div className="w-full mb-16">
             <LeaderboardChart className="-mx-4 sm:mx-0" data={leaderboard} title="Full-Leaderboard" version="1.0" />
           </div>
