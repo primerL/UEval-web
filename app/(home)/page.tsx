@@ -111,10 +111,10 @@ export default async function Tasks() {
             </figcaption>
           </figure>
 
-          <div className="mb-6 flex flex-col items-center gap-2">
+          {/* <div className="mb-6 flex flex-col items-center gap-2">
             <p className="font-mono text-sm">view model performance</p>
             <ChevronDown className="animate-float size-4" />
-          </div>
+          </div> */}
           <div className="w-full mb-16">
             <LeaderboardChart className="-mx-4 sm:mx-0" data={leaderboard} title="Full-Leaderboard" version="1.0" />
           </div>
@@ -141,7 +141,11 @@ export default async function Tasks() {
           </div>
           {tasks && (
             <div className="-mx-4 flex flex-col gap-12 sm:mx-0 sm:gap-16">
-              <TaskGrid tasks={tasks} behavior="navigate" />
+              <TaskGrid
+                tasks={tasks}
+                behavior="navigate"
+                showPreviewLabel={false}
+              />
               <Link
                 href="https://huggingface.co/datasets/primerL/UEval-test"
                 className={cn(

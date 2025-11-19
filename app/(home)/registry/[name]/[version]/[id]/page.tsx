@@ -12,10 +12,10 @@ import { unstable_cache } from "next/cache";
 import { SearchParams } from "nuqs";
 import { TaskDemo } from "./components/task-demo";
 import { TaskHeader } from "./components/task-header";
-import { TaskImage } from "./components/task-image";
 import { TaskInstruction } from "./components/task-instruction";
 import { TaskTags } from "./components/task-tags";
 import { TaskUsage } from "./components/task-usage";
+import { TaskImage } from "../components/task-image";
 
 type PageProps = {
   params: Promise<{

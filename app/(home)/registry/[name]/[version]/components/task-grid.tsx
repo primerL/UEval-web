@@ -5,13 +5,19 @@ import { TaskCard } from "./task-card";
 interface TaskGridProps {
   tasks: Tables<"task">[];
   behavior?: "filter" | "navigate";
+  showPreviewLabel?: boolean;
 }
 
-export function TaskGrid({ tasks, behavior }: TaskGridProps) {
+export function TaskGrid({ tasks, behavior, showPreviewLabel }: TaskGridProps) {
   return (
     <Grid>
       {tasks.map((task) => (
-        <TaskCard key={task.id} task={task} behavior={behavior} />
+        <TaskCard
+          key={task.id}
+          task={task}
+          behavior={behavior}
+          showPreviewLabel={showPreviewLabel}
+        />
       ))}
     </Grid>
   );
