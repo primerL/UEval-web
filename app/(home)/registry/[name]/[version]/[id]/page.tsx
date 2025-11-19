@@ -96,11 +96,11 @@ export default async function Task({ params }: PageProps) {
         <TaskInstruction
           instruction={task["task-description"] ?? "No description available"}
         />
-        {task["author-name"] !== "unknown" && task["author-name"] !== "anonymous" && (
+        {/* {task["author-name"] !== "unknown" && task["author-name"] !== "anonymous" && (
           <p className="text-muted-foreground font-mono text-sm">
             Created by {task["author-name"]}
           </p>
-        )}
+        )} */}
         <div className="flex flex-1 flex-col justify-end">
           <CanaryString />
         </div>

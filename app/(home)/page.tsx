@@ -7,7 +7,7 @@ import { unstable_cache } from "next/cache";
 import Link from "next/link";
 import { Callout } from "./components/callout";
 import { LeaderboardChart } from "./components/leaderboard-chart";
-import { getCPLeaderboard, getResearchLeaderboard } from "./leaderboard/actions";
+import { getCPLeaderboard } from "./leaderboard/actions";
 import { TaskGrid } from "./registry/[name]/[version]/components/task-grid";
 
 const getTasks = async () => {
@@ -29,7 +29,6 @@ const getTasks = async () => {
 export default async function Tasks() {
   const tasks = await getTasks();
   const cpLeaderboard = await getCPLeaderboard();
-  const researchLeaderboard = await getResearchLeaderboard();
 
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-6">
@@ -89,9 +88,8 @@ export default async function Tasks() {
             <p className="font-mono text-sm">view model performance</p>
             <ChevronDown className="animate-float size-4" />
           </div> */}
-          <div className="grid w-full grid-cols-1 gap-4 mb-16 lg:grid-cols-2">
+          <div className="w-full mb-16">
             <LeaderboardChart className="-mx-4 sm:mx-0" data={cpLeaderboard} title="Algorithmic" version="1.0" />
-            <LeaderboardChart className="-mx-4 sm:mx-0" data={researchLeaderboard} title="Research" version="1.0" />
           </div>
           <Link
             href="/leaderboard"

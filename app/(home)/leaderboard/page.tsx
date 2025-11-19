@@ -19,13 +19,6 @@ const leaderboards: Leaderboard[] = [
       "Algorithmic Problems, covering Optimization tasks, Constructive tasks, and Interactive tasks, adapted from programming contests but rewritten into open-ended, partially scored variants.",
     dataSource: "static",
   },
-  {
-    name: "Research",
-    version: "1.0",
-    description:
-      "Research Problems, spanning six major CS domains: OS (Operating Systems), HPC (High-Performance Computing), AI (Artificial Intelligence research tasks), DB (Databases), PL (Programming Languages), and Security (cybersecurity and vulnerability analysis).",
-    dataSource: "static",
-  },
 ];
 
 export default async function LeaderboardsPage() {
