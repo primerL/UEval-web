@@ -15,7 +15,7 @@ import { FilterableTaskGrid } from "./components/filterable-task-grid";
 
 export async function generateStaticParams() {
   return [
-    { name: 'FrontierCS', version: '1.0' },
+    { name: 'UEval', version: '1.0' },
   ];
 }
 

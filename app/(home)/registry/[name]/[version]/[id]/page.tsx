@@ -54,7 +54,7 @@ export async function generateStaticParams() {
   }
 
   return tasks.map((task) => ({
-    name: 'FrontierCS',
+    name: 'UEval',
     version: '1.0',
     id: task.id.toString(),
   }));

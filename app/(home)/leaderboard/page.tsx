@@ -29,7 +29,7 @@ export default async function LeaderboardsPage() {
           Leaderboards
         </h2>
         <p className="mb-6 font-mono text-sm text-muted-foreground">
-          View and compare model performance on the FrontierCS benchmark.
+          View and compare model performance on the UEval benchmark.
         </p>
         <Grid className="-mx-4 sm:mx-0">
           {leaderboards.map((leaderboard) => (

@@ -108,7 +108,7 @@ export default async function Tasks() {
         <div className="flex min-h-[90vh] flex-col justify-center py-12 sm:pb-16">
           <div className="mb-4 flex flex-col items-center gap-2">
             <p className="font-mono text-sm">
-              view FrontierCS problems
+              view UEval problems
             </p>
             <ChevronDown className="animate-float size-4" />
           </div>
@@ -125,7 +125,7 @@ export default async function Tasks() {
                   }),
                 )}
               >
-                view all FrontierCS problems ↗
+                view all UEval problems ↗
               </Link>
             </div>
           )}

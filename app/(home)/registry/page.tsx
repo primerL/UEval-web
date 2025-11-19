@@ -10,13 +10,13 @@ export default async function Registry() {
         </h2>
         <CodeBlock
           lang="bash"
-          code={`# FrontierCS dataset available`}
+          code={`# UEval dataset available`}
           className="mt-0 mb-6 font-mono"
         />
         <p className="text-muted-foreground font-mono">
           View{" "}
-          <Link href="/registry/FrontierCS/1.0" className="underline underline-offset-4">
-            FrontierCS 1.0
+          <Link href="/registry/UEval/1.0" className="underline underline-offset-4">
+            UEval 1.0
           </Link>
           {" "}dataset.
         </p>
