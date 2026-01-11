@@ -9,9 +9,12 @@ import type { ReactNode } from "react";
 import "./global.css";
 
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
 export const metadata: Metadata = {
   title: "UEval",
-  metadataBase: new URL("https://wenhaochai.com/ueval"),
+  metadataBase: new URL(baseUrl),
   description: "UEval is a challenging real-world benchmark for multimodal generation of unified models that are capable of generating both images and text.",
   icons: {
     icon: [
@@ -19,17 +22,17 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "UEval: A Real-World Benchmark for Unified Multimodal Generation",
+    title: "UEval: A Benchmark for Unified Multimodal Generation",
     description: "UEval is a challenging real-world benchmark for multimodal generation of unified models that are capable of generating both images and text.",
     images: "/og.png",
-    url: "https://wenhaochai.com/ueval",
+    url: baseUrl,
     siteName: "UEval",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "UEval: A Real-World Benchmark for Unified Multimodal Generation",
+    title: "UEval: A Benchmark for Unified Multimodal Generation",
     description: "UEval is a challenging real-world benchmark for multimodal generation of unified models that are capable of generating both images and text.",
     images: [
       {
