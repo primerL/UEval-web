@@ -38,7 +38,7 @@ export default async function Tasks() {
         <div className="flex flex-col justify-center gap-16 sm:pt-24 sm:pb-0">
           <div className="space-y-8">
             <h2 className="text-center font-mono text-3xl/tight font-medium tracking-tighter text-balance sm:mb-8 sm:text-6xl/tight">
-              UEval: A Real-World Benchmark for Unified Multimodal Generation
+              UEval: A Benchmark for Unified Multimodal Generation
             </h2>
             <p className="text-fd-muted-foreground text-center font-mono tracking-tight text-balance sm:text-xl/relaxed">
               UEval comprises 1,000 expert-curated prompts that require both images and text in the model outputs, sourced from 8 diverse real-world domains.
