@@ -28,11 +28,27 @@ export default async function Dataset({
 
   const supabase = await createClient();
 
-  const { data: tasks, error } = await supabase
-    .from("task")
-    .select("*");
+  let tasks = [];
 
-  if (error) {
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+
+    const { data, error } = await supabase
+      .from("task")
+      .select("*")
+      .abortSignal(controller.signal);
+
+    clearTimeout(timeoutId);
+
+    if (error) {
+      console.error("Failed to fetch tasks:", error);
+      notFound();
+    }
+
+    tasks = data || [];
+  } catch (error) {
+    console.error("Timeout or error fetching tasks:", error);
     notFound();
   }
 

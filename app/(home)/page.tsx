@@ -11,19 +11,31 @@ import { getLeaderboard } from "./leaderboard/actions";
 import { TaskGrid } from "./registry/[name]/[version]/components/task-grid";
 
 const getTasks = async () => {
-  const supabase = await createClient();
-  const { data: tasks, error } = await supabase
-    .from("task")
-    .select("*");
+  try {
+    const supabase = await createClient();
 
-  if (error) {
-    console.error("Supabase error:", error);
-    console.error("Error details:", JSON.stringify(error, null, 2));
-    throw new Error(error.message);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+
+    const { data: tasks, error } = await supabase
+      .from("task")
+      .select("*")
+      .abortSignal(controller.signal);
+
+    clearTimeout(timeoutId);
+
+    if (error) {
+      console.error("Supabase error:", error);
+      console.error("Error details:", JSON.stringify(error, null, 2));
+      return []; // Return empty array instead of throwing
+    }
+
+    // console.log("Tasks fetched successfully:", tasks);
+    return tasks || [];
+  } catch (error) {
+    console.error("Timeout or error fetching tasks:", error);
+    return []; // Return empty array on timeout
   }
-
-  // console.log("Tasks fetched successfully:", tasks);
-  return tasks;
 };
 
 export default async function Tasks() {

@@ -45,20 +45,40 @@ const getTask = async ({ id }: { id: string }) => {
 };
 
 export async function generateStaticParams() {
-  const supabase = await createClient();
-  const { data: tasks } = await supabase
-    .from("task")
-    .select("id");
+  try {
+    const supabase = await createClient();
 
-  if (!tasks) {
+    // Add timeout protection with AbortController
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
+    const { data: tasks, error } = await supabase
+      .from("task")
+      .select("id")
+      .abortSignal(controller.signal);
+
+    clearTimeout(timeoutId);
+
+    if (error) {
+      console.error("Failed to fetch tasks for generateStaticParams:", error);
+      return [];
+    }
+
+    if (!tasks || tasks.length === 0) {
+      return [];
+    }
+
+    return tasks.map((task) => ({
+      name: 'UEval',
+      version: '1.0',
+      id: task.id.toString(),
+    }));
+  } catch (error) {
+    console.error("Error in generateStaticParams:", error);
+    // Return empty array to allow build to continue without static params
+    // Pages will be generated on-demand if needed
     return [];
   }
-
-  return tasks.map((task) => ({
-    name: 'UEval',
-    version: '1.0',
-    id: task.id.toString(),
-  }));
 }
 
 export default async function Task({ params }: PageProps) {
