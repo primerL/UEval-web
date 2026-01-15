@@ -10,32 +10,47 @@ import { LeaderboardChart } from "./components/leaderboard-chart";
 import { getLeaderboard } from "./leaderboard/actions";
 import { TaskGrid } from "./registry/[name]/[version]/components/task-grid";
 
-const getTasks = async () => {
-  try {
-    const supabase = await createClient();
+const getTasks = async (retries = 3) => {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const supabase = await createClient();
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
 
-    const { data: tasks, error } = await supabase
-      .from("task")
-      .select("*")
-      .abortSignal(controller.signal);
+      const { data: tasks, error } = await supabase
+        .from("task")
+        .select("*")
+        .abortSignal(controller.signal);
 
-    clearTimeout(timeoutId);
+      clearTimeout(timeoutId);
 
-    if (error) {
-      console.error("Supabase error:", error);
-      console.error("Error details:", JSON.stringify(error, null, 2));
-      return []; // Return empty array instead of throwing
+      if (error) {
+        console.error(`Supabase error (attempt ${attempt}/${retries}):`, error);
+        console.error("Error details:", JSON.stringify(error, null, 2));
+
+        if (attempt < retries) {
+          console.log(`Retrying in ${attempt * 1000}ms...`);
+          await new Promise(resolve => setTimeout(resolve, attempt * 1000));
+          continue;
+        }
+        return []; // Return empty array after all retries exhausted
+      }
+
+      // console.log("Tasks fetched successfully:", tasks);
+      return tasks || [];
+    } catch (error) {
+      console.error(`Timeout or error fetching tasks (attempt ${attempt}/${retries}):`, error);
+
+      if (attempt < retries) {
+        console.log(`Retrying in ${attempt * 1000}ms...`);
+        await new Promise(resolve => setTimeout(resolve, attempt * 1000));
+        continue;
+      }
+      return []; // Return empty array on timeout after all retries
     }
-
-    // console.log("Tasks fetched successfully:", tasks);
-    return tasks || [];
-  } catch (error) {
-    console.error("Timeout or error fetching tasks:", error);
-    return []; // Return empty array on timeout
   }
+  return [];
 };
 
 export default async function Tasks() {
