@@ -108,14 +108,14 @@ export function DataTable<TData, TValue>({
 
         {/* TODO: Change email */}
         <p>
-          Send us an email to submit your results:{" "}
-          {" "}
+          Submit your results by opening{" "}
           <a
-            href="mailto:wenhao.chai@princeton.edu"
+            href="https://github.com/primerL/UEval-web/issues"
             className="text-foreground underline underline-offset-4"
           >
-            wenhao.chai@princeton.edu
+            an issue in our GitHub
           </a>
+          .
         </p>
 
         {/* <div className="mx-auto flex flex-row items-center justify-center gap-2">

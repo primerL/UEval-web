@@ -178,14 +178,14 @@ export default async function Tasks() {
           <ChevronDown className="animate-float size-4" />
           {/* TODO: Add form here */}
           <p>
-            Send us an email to submit your results:{" "}
-            {" "}
+            Submit your results by opening{" "}
             <a
-              href="mailto:wenhao.chai@princeton.edu"
+              href="https://github.com/primerL/UEval-web/issues"
               className="text-foreground underline underline-offset-4"
             >
-              wenhao.chai@princeton.edu
+              an issue in our GitHub
             </a>
+            .
           </p>
         </div>
         <div className="flex flex-1 flex-col justify-end">
