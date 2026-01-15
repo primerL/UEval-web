@@ -155,6 +155,7 @@ export type Database = {
           created_at: string
           gt_image: string | null
           id: number
+          question: string | null
           "task-category": string | null
           "task-description": string | null
           "task-name": string | null
@@ -164,6 +165,7 @@ export type Database = {
           created_at?: string
           gt_image?: string | null
           id?: number
+          question?: string | null
           "task-category"?: string | null
           "task-description"?: string | null
           "task-name"?: string | null
@@ -173,6 +175,7 @@ export type Database = {
           created_at?: string
           gt_image?: string | null
           id?: number
+          question?: string | null
           "task-category"?: string | null
           "task-description"?: string | null
           "task-name"?: string | null
