@@ -17,6 +17,8 @@ import { TaskTags } from "./components/task-tags";
 import { TaskUsage } from "./components/task-usage";
 import { TaskImage } from "../components/task-image";
 import { Section } from "./components/section";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type PageProps = {
   params: Promise<{
@@ -121,8 +123,10 @@ export default async function Task({ params }: PageProps) {
         {(task?.gt_image || task?.answer_image || task.question) && (
           <Section title="Example">
             {task.question && (
-              <div className="prose prose-sm dark:prose-invert max-w-none font-mono wrap-anywhere whitespace-pre-wrap">
-                {task.question}
+              <div className="prose prose-sm dark:prose-invert max-w-none font-mono wrap-anywhere">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {task.question}
+                </ReactMarkdown>
               </div>
             )}
             {(task?.gt_image || task?.answer_image) && (
