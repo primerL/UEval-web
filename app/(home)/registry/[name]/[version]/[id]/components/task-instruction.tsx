@@ -11,7 +11,7 @@ export function TaskInstruction({
   instruction,
 }: TaskInstructionProps) {
   return (
-    <Section title="Instruction">
+    <Section title="Introduction">
       {/* {encrypted ? (
         <div className="bg-muted flex items-center gap-3 border p-3">
           <Lock className="text-muted-foreground size-4" />
