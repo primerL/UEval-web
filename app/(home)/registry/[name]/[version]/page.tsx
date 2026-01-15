@@ -37,6 +37,7 @@ export default async function Dataset({
     const { data, error } = await supabase
       .from("task")
       .select("*")
+      .order("id", { ascending: true })
       .abortSignal(controller.signal);
 
     clearTimeout(timeoutId);

@@ -21,6 +21,7 @@ const getTasks = async (retries = 3) => {
       const { data: tasks, error } = await supabase
         .from("task")
         .select("*")
+        .order("id", { ascending: true })
         .abortSignal(controller.signal);
 
       clearTimeout(timeoutId);
