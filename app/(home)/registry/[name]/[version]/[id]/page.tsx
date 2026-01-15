@@ -13,10 +13,10 @@ import { SearchParams } from "nuqs";
 import { TaskDemo } from "./components/task-demo";
 import { TaskHeader } from "./components/task-header";
 import { TaskInstruction } from "./components/task-instruction";
-import { TaskExample } from "./components/task-example";
 import { TaskTags } from "./components/task-tags";
 import { TaskUsage } from "./components/task-usage";
 import { TaskImage } from "../components/task-image";
+import { Section } from "./components/section";
 
 type PageProps = {
   params: Promise<{
@@ -86,14 +86,6 @@ export default async function Task({ params }: PageProps) {
   const { id, name, version } = await params;
   const task = await getTask({ id });
 
-  // Split description into introduction and example
-  const description = task["task-description"] ?? "No description available";
-  const exampleMatch = description.match(/###?\s*Example[s]?[\s\S]*/i);
-  const introduction = exampleMatch
-    ? description.substring(0, exampleMatch.index).trim()
-    : description;
-  const example = exampleMatch ? exampleMatch[0].replace(/###?\s*Example[s]?\s*/i, '').trim() : "";
-
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-6 sm:pt-12">
       <div className="flex w-full max-w-3xl flex-1 flex-col gap-6 font-mono">
@@ -124,24 +116,23 @@ export default async function Task({ params }: PageProps) {
           category={task["task-category"] ?? "uncategorized"}
         />
         <TaskInstruction
-          instruction={introduction}
-        />
-        <TaskExample
-          example={example}
+          instruction={task["task-description"] ?? "No description available"}
         />
         {(task?.gt_image || task?.answer_image) && (
-          <div className="grid gap-4 sm:grid-cols-2">
-            <TaskImage
-              data={task?.gt_image}
-              alt="Ground truth image"
-              label="reference (ground truth) image"
-            />
-            <TaskImage
-              data={task?.answer_image}
-              alt="Answer image"
-              label="model generated image"
-            />
-          </div>
+          <Section title="Example">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <TaskImage
+                data={task?.gt_image}
+                alt="Ground truth image"
+                label="reference (ground truth) image"
+              />
+              <TaskImage
+                data={task?.answer_image}
+                alt="Answer image"
+                label="model generated image"
+              />
+            </div>
+          </Section>
         )}
         {/* {task["author-name"] !== "unknown" && task["author-name"] !== "anonymous" && (
           <p className="text-muted-foreground font-mono text-sm">
