@@ -13,7 +13,6 @@ import { SearchParams } from "nuqs";
 import { TaskDemo } from "./components/task-demo";
 import { TaskHeader } from "./components/task-header";
 import { TaskInstruction } from "./components/task-instruction";
-import { TaskQuestion } from "./components/task-question";
 import { TaskTags } from "./components/task-tags";
 import { TaskUsage } from "./components/task-usage";
 import { TaskImage } from "../components/task-image";
@@ -119,25 +118,29 @@ export default async function Task({ params }: PageProps) {
         <TaskInstruction
           instruction={task["task-description"] ?? "No description available"}
         />
-        {(task?.gt_image || task?.answer_image) && (
+        {(task?.gt_image || task?.answer_image || task.question) && (
           <Section title="Example">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <TaskImage
-                data={task?.gt_image}
-                alt="Ground truth image"
-                label="reference (ground truth) image"
-              />
-              <TaskImage
-                data={task?.answer_image}
-                alt="Answer image"
-                label="model generated image"
-              />
-            </div>
+            {task.question && (
+              <div className="prose prose-sm dark:prose-invert max-w-none font-mono wrap-anywhere whitespace-pre-wrap">
+                {task.question}
+              </div>
+            )}
+            {(task?.gt_image || task?.answer_image) && (
+              <div className="grid gap-4 sm:grid-cols-2">
+                <TaskImage
+                  data={task?.gt_image}
+                  alt="Ground truth image"
+                  label="reference (ground truth) image"
+                />
+                <TaskImage
+                  data={task?.answer_image}
+                  alt="Answer image"
+                  label="model generated image"
+                />
+              </div>
+            )}
           </Section>
         )}
-        <TaskQuestion
-          question={task.question ?? ""}
-        />
         {/* {task["author-name"] !== "unknown" && task["author-name"] !== "anonymous" && (
           <p className="text-muted-foreground font-mono text-sm">
             Created by {task["author-name"]}
