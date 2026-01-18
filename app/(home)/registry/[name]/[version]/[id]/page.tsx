@@ -125,7 +125,7 @@ export default async function Task({ params }: PageProps) {
             {task.question && (
               <div className="prose prose-sm dark:prose-invert max-w-none font-mono wrap-anywhere">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {task.question}
+                  {task.question.replace(/\\n/g, '\n')}
                 </ReactMarkdown>
               </div>
             )}
