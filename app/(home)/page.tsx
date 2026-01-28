@@ -15,16 +15,10 @@ const getTasks = async (retries = 3) => {
     try {
       const supabase = await createClient();
 
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
-
       const { data: tasks, error } = await supabase
         .from("task")
         .select("*")
-        .order("id", { ascending: true })
-        .abortSignal(controller.signal);
-
-      clearTimeout(timeoutId);
+        .order("id", { ascending: true });
 
       if (error) {
         console.error(`Supabase error (attempt ${attempt}/${retries}):`, error);

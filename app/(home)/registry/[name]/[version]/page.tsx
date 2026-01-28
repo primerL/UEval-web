@@ -31,16 +31,10 @@ export default async function Dataset({
   let tasks = [];
 
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
-
     const { data, error } = await supabase
       .from("task")
       .select("*")
-      .order("id", { ascending: true })
-      .abortSignal(controller.signal);
-
-    clearTimeout(timeoutId);
+      .order("id", { ascending: true });
 
     if (error) {
       console.error("Failed to fetch tasks:", error);

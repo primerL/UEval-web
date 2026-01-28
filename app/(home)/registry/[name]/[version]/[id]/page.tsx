@@ -51,16 +51,9 @@ export async function generateStaticParams() {
   try {
     const supabase = await createClient();
 
-    // Add timeout protection with AbortController
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-
     const { data: tasks, error } = await supabase
       .from("task")
-      .select("id")
-      .abortSignal(controller.signal);
-
-    clearTimeout(timeoutId);
+      .select("id");
 
     if (error) {
       console.error("Failed to fetch tasks for generateStaticParams:", error);
