@@ -61,7 +61,7 @@ export default async function Tasks() {
               UEval: A Benchmark for Unified Multimodal Generation
             </h2>
             <div className="flex flex-col items-center gap-2">
-              <p className="text-center font-mono text-lg sm:text-xl text-foreground">
+              <p className="text-center font-mono text-xl sm:text-2xl" style={{ color: "#B082C9" }}>
                 <a href="https://primerl.github.io/" className="hover:underline">Bo Li</a>
                 {", "}
                 <a href="https://davidyyd.github.io" className="hover:underline">Yida Yin</a>
@@ -73,16 +73,13 @@ export default async function Tasks() {
                 <a href="https://liuzhuang13.github.io" className="hover:underline">Zhuang Liu</a>
                 {"*"}
               </p>
-              <p className="text-center font-mono text-base text-fd-muted-foreground">
+              <p className="text-center font-mono text-lg sm:text-xl text-fd-muted-foreground">
                 Princeton University
               </p>
               <p className="text-center font-mono text-xs text-fd-muted-foreground">
                 (* indicates co-advising)
               </p>
             </div>
-            <p className="text-fd-muted-foreground text-center font-mono tracking-tight text-balance sm:text-xl/relaxed">
-              UEval comprises 1,000 expert-curated prompts that require both images and text in the model outputs, sourced from 8 diverse real-world domains.
-            </p>
           </div>
           {/* <div className="mx-auto flex max-w-3xl flex-col gap-4 md:flex-row md:gap-2">
             <Callout
@@ -140,16 +137,44 @@ export default async function Tasks() {
             >
               test with lmms-eval ↗
             </Link>
+            <Link
+              href="https://huggingface.co/datasets/zlab-princeton/UEval"
+              className={cn(
+                "font-mono",
+                buttonVariants({
+                  variant: "secondary",
+                  size: "xl",
+                  className: "rounded-none",
+                }),
+              )}
+            >
+              view all UEval problems ↗
+            </Link>
+            <Link
+              href="https://github.com/zlab-princeton/UEval"
+              className={cn(
+                "font-mono",
+                buttonVariants({
+                  variant: "secondary",
+                  size: "xl",
+                  className: "rounded-none",
+                }),
+              )}
+            >
+              view source code ↗
+            </Link>
           </div>
 
-          <figure className="w-full">
-            <img src="/og.png" alt="teaser" className="w-full" />
-            <figcaption className="mt-2 text-left text-xs font-mono text-muted-foreground space-y-1">
-              <p>Priel im Winter (Tidal Channel in Winter), 1960s</p>
-              <p>Hans Grohs, 1892-1981; born Dithmarschen, Germany; died Heide, Germany</p>
-              <p>Courtesy of the Princeton University Art Museum. Used with permission.</p>
-            </figcaption>
-          </figure>
+          <div className="flex flex-col items-center gap-4">
+            <h3 className="text-center font-mono text-xl sm:text-2xl font-medium">
+              What is UEval?
+            </h3>
+            <p className="text-fd-muted-foreground text-center font-mono tracking-tight text-balance sm:text-xl/relaxed">
+              UEval comprises 1,000 expert-curated prompts that require both images and text in the model outputs, sourced from 8 diverse real-world domains.
+            </p>
+          </div>
+
+          <img src="/og.png" alt="teaser" className="mx-auto w-full max-w-5xl" />
 
           {/* <div className="mb-6 flex flex-col items-center gap-2">
             <p className="font-mono text-sm">view model performance</p>
@@ -186,18 +211,6 @@ export default async function Tasks() {
                 behavior="navigate"
                 showPreviewLabel={false}
               />
-              <Link
-                href="https://huggingface.co/datasets/primerL/UEval-test"
-                className={cn(
-                  buttonVariants({
-                    variant: "secondary",
-                    size: "xl",
-                    className: "mx-auto rounded-none font-mono",
-                  }),
-                )}
-              >
-                view all UEval problems ↗
-              </Link>
             </div>
           )}
         </div>
@@ -210,7 +223,7 @@ export default async function Tasks() {
           <p>
             Submit your results by opening{" "}
             <a
-              href="https://github.com/primerL/UEval-web/issues"
+              href="https://github.com/zlab-princeton/UEval/issues"
               className="text-foreground underline underline-offset-4"
             >
               an issue in our GitHub
@@ -218,6 +231,19 @@ export default async function Tasks() {
             .
           </p>
         </div>
+        <section id="BibTeX" className="py-12">
+          <h2 className="text-center font-mono text-xl sm:text-2xl font-medium mb-6">
+            BibTeX
+          </h2>
+          <pre className="mx-auto max-w-2xl overflow-x-auto rounded bg-muted p-4 text-sm font-mono">
+{`@article{xxx,
+    title    = {UEval: A Benchmark for Unified Multimodal Generation},
+    author   = {xx},
+    year     = {2025},
+    journal  = {}
+}`}
+          </pre>
+        </section>
         <div className="flex flex-1 flex-col justify-end">
           <CanaryString />
         </div>
