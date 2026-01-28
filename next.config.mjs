@@ -2,14 +2,14 @@ import { createMDX } from 'fumadocs-mdx/next';
 
 const withMDX = createMDX();
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '/ueval'; // TODO
+const basePath = '/ueval-web';
 
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
   output: 'export',
-  // basePath, // TODO: remove
-  // assetPrefix: `${basePath}/`, // TODO: remove
+  basePath,
+  assetPrefix: `${basePath}/`,
   images: {
     unoptimized: true, // Required for static export
   },
