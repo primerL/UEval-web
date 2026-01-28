@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "build:gh": "NEXT_PUBLIC_BASE_PATH=/ueval-web next build",
+    "deploy:gh": "npm run build:gh && npx gh-pages -d out",
     "dev": "next dev --turbo",
     "start": "next start",
     "postinstall": "fumadocs-mdx"
@@ -47,6 +49,7 @@
     "@types/node": "22.14.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
