@@ -29,41 +29,60 @@ type PageProps = {
   searchParams: Promise<SearchParams>;
 };
 
-const getTask = async ({ id }: { id: string }) => {
-  const supabase = await createClient();
-  const { data: task, error } = await supabase
-    .from("task")
-    .select("*")
-    .eq("id", parseInt(id))
-    .single();
+let allTasksCache: Awaited<ReturnType<typeof fetchAllTasks>> | null = null;
 
-  if (error) {
-    console.error("Supabase error:", error);
-    console.error("Error details:", JSON.stringify(error, null, 2));
-    throw new Error(error.message);
+const fetchAllTasks = async (retries = 3) => {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const supabase = await createClient();
+      const { data, error } = await supabase
+        .from("task")
+        .select('id, "task-name", "task-category", "task-description", question, gt_image, answer_image')
+        .order("id", { ascending: true });
+
+      if (error) {
+        console.error(`Supabase error (attempt ${attempt}/${retries}):`, error);
+        if (attempt < retries) {
+          await new Promise(resolve => setTimeout(resolve, attempt * 1000));
+          continue;
+        }
+        return [];
+      }
+      return data || [];
+    } catch (error) {
+      console.error(`Timeout fetching tasks (attempt ${attempt}/${retries}):`, error);
+      if (attempt < retries) {
+        await new Promise(resolve => setTimeout(resolve, attempt * 1000));
+        continue;
+      }
+      return [];
+    }
   }
+  return [];
+};
 
-  // console.log("Task fetched successfully:", task);
+const getAllTasks = async () => {
+  if (!allTasksCache) {
+    allTasksCache = await fetchAllTasks();
+  }
+  return allTasksCache;
+};
+
+const getTask = async ({ id }: { id: string }) => {
+  const tasks = await getAllTasks();
+  const task = tasks.find((t) => t.id === parseInt(id));
+  if (!task) {
+    throw new Error(`Task ${id} not found`);
+  }
   return task;
 };
 
 export async function generateStaticParams() {
   try {
-    const supabase = await createClient();
-
-    const { data: tasks, error } = await supabase
-      .from("task")
-      .select("id");
-
-    if (error) {
-      console.error("Failed to fetch tasks for generateStaticParams:", error);
-      return [];
-    }
-
+    const tasks = await getAllTasks();
     if (!tasks || tasks.length === 0) {
       return [];
     }
-
     return tasks.map((task) => ({
       name: 'UEval',
       version: '1.0',
@@ -71,8 +90,6 @@ export async function generateStaticParams() {
     }));
   } catch (error) {
     console.error("Error in generateStaticParams:", error);
-    // Return empty array to allow build to continue without static params
-    // Pages will be generated on-demand if needed
     return [];
   }
 }
