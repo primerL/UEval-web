@@ -66,6 +66,26 @@ export default async function Tasks() {
             <h2 className="text-center font-mono text-3xl/tight font-medium tracking-tighter text-balance sm:mb-8 sm:text-6xl/tight">
               UEval: A Benchmark for Unified Multimodal Generation
             </h2>
+            <div className="flex flex-col items-center gap-2">
+              <p className="text-center font-mono text-sm text-fd-muted-foreground">
+                <a href="https://primerl.github.io/" className="hover:underline">Bo Li</a>
+                {", "}
+                <a href="https://davidyyd.github.io" className="hover:underline">Yida Yin</a>
+                {", "}
+                <a href="https://wenhaochai.com/" className="hover:underline">Wenhao Chai</a>
+                {", "}
+                <a href="https://zeyofu.github.io/" className="hover:underline">Xingyu Fu</a>
+                {"*, "}
+                <a href="https://liuzhuang13.github.io" className="hover:underline">Zhuang Liu</a>
+                {"*"}
+              </p>
+              <p className="text-center font-mono text-xs text-fd-muted-foreground">
+                Princeton University
+              </p>
+              <p className="text-center font-mono text-xs text-fd-muted-foreground">
+                (* indicates co-advising)
+              </p>
+            </div>
             <p className="text-fd-muted-foreground text-center font-mono tracking-tight text-balance sm:text-xl/relaxed">
               UEval comprises 1,000 expert-curated prompts that require both images and text in the model outputs, sourced from 8 diverse real-world domains.
             </p>
