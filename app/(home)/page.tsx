@@ -17,7 +17,7 @@ const getTasks = async (retries = 3) => {
 
       const { data: tasks, error } = await supabase
         .from("task")
-        .select("*")
+        .select('id, "task-name", "task-category", "task-description"')
         .order("id", { ascending: true });
 
       if (error) {

@@ -1,15 +1,14 @@
 "use client";
 
-import { Tables } from "@/lib/supabase/database.types";
 import { parseAsString, useQueryState } from "nuqs";
 import { useMemo } from "react";
 import { parseAsSetOfStrings } from "../lib/parse-as-set-of-strings";
 import { filterTasks } from "../lib/search-params";
-import { TaskGrid } from "./task-grid";
+import { TaskGrid, TaskListItem } from "./task-grid";
 import { FilterOption, TaskToolbar } from "./task-toolbar";
 
 interface FilterableTaskGridProps {
-  tasks: Tables<"task">[];
+  tasks: TaskListItem[];
 }
 
 export function FilterableTaskGrid({ tasks }: FilterableTaskGridProps) {

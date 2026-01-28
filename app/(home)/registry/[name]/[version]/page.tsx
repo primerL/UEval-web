@@ -33,7 +33,7 @@ export default async function Dataset({
   try {
     const { data, error } = await supabase
       .from("task")
-      .select("*")
+      .select('id, "task-name", "task-category", "task-description"')
       .order("id", { ascending: true });
 
     if (error) {

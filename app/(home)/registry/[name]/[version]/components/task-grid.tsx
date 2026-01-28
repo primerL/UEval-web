@@ -2,8 +2,12 @@ import { Grid } from "@/components/grid";
 import { Tables } from "@/lib/supabase/database.types";
 import { TaskCard } from "./task-card";
 
+export type TaskListItem = Pick<Tables<"task">, "id" | "task-name" | "task-category" | "task-description"> & {
+  gt_image?: string | null;
+};
+
 interface TaskGridProps {
-  tasks: Tables<"task">[];
+  tasks: TaskListItem[];
   behavior?: "filter" | "navigate";
   showPreviewLabel?: boolean;
 }

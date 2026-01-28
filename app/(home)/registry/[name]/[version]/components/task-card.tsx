@@ -1,12 +1,12 @@
 import { GridItem } from "@/components/grid";
 import { Badge } from "@/components/ui/badge";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tables } from "@/lib/supabase/database.types";
 import { CopyButton } from "./copy-button";
 import { TaskImage } from "./task-image";
+import { TaskListItem } from "./task-grid";
 
 type TaskCardProps = {
-  task: Tables<"task">;
+  task: TaskListItem;
   behavior?: "filter" | "navigate";
   showPreviewLabel?: boolean;
 };
