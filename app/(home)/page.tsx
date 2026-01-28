@@ -66,8 +66,8 @@ export default async function Tasks() {
             <h2 className="text-center font-mono text-3xl/tight font-medium tracking-tighter text-balance sm:mb-8 sm:text-6xl/tight">
               UEval: A Benchmark for Unified Multimodal Generation
             </h2>
-            <div className="flex flex-col items-center gap-3">
-              <p className="text-center font-mono text-base text-fd-muted-foreground">
+            <div className="flex flex-col items-center gap-2">
+              <p className="text-center font-mono text-lg sm:text-xl text-foreground">
                 <a href="https://primerl.github.io/" className="hover:underline">Bo Li</a>
                 {", "}
                 <a href="https://davidyyd.github.io" className="hover:underline">Yida Yin</a>
@@ -79,7 +79,7 @@ export default async function Tasks() {
                 <a href="https://liuzhuang13.github.io" className="hover:underline">Zhuang Liu</a>
                 {"*"}
               </p>
-              <p className="text-center font-mono text-sm text-fd-muted-foreground">
+              <p className="text-center font-mono text-base text-fd-muted-foreground">
                 Princeton University
               </p>
               <p className="text-center font-mono text-xs text-fd-muted-foreground">
