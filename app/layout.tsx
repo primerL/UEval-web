@@ -9,8 +9,9 @@ import type { ReactNode } from "react";
 import "./global.css";
 
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}${basePath}` : `http://localhost:3000${basePath}`);
 
 export const metadata: Metadata = {
   title: "UEval",
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "UEval: A Benchmark for Unified Multimodal Generation",
     description: "UEval is a challenging real-world benchmark for multimodal generation of unified models that are capable of generating both images and text.",
-    images: "/og.png",
+    images: `${basePath}/og.png`,
     url: baseUrl,
     siteName: "UEval",
     locale: "en_US",
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     description: "UEval is a challenging real-world benchmark for multimodal generation of unified models that are capable of generating both images and text.",
     images: [
       {
-        url: "/og.png",
+        url: `${basePath}/og.png`,
         width: 1200,
         height: 630,
       },

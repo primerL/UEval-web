@@ -110,7 +110,7 @@ export function DataTable<TData, TValue>({
         <p>
           Submit your results by opening{" "}
           <a
-            href="https://github.com/primerL/UEval-web/issues"
+            href="https://github.com/zlab-princeton/UEval_Benchmark/issues"
             className="text-foreground underline underline-offset-4"
           >
             an issue in our GitHub

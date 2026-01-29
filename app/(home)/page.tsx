@@ -125,19 +125,6 @@ export default async function Tasks() {
               read our paper ↗
             </Link>
             <Link
-              href="https://github.com/EvolvingLMMs-Lab/lmms-eval"
-              className={cn(
-                "font-mono",
-                buttonVariants({
-                  variant: "secondary",
-                  size: "xl",
-                  className: "rounded-none",
-                }),
-              )}
-            >
-              test with lmms-eval ↗
-            </Link>
-            <Link
               href="https://huggingface.co/datasets/zlab-princeton/UEval"
               className={cn(
                 "font-mono",
@@ -151,7 +138,7 @@ export default async function Tasks() {
               view all UEval problems ↗
             </Link>
             <Link
-              href="https://github.com/zlab-princeton/UEval"
+              href="https://github.com/zlab-princeton/UEval_Benchmark"
               className={cn(
                 "font-mono",
                 buttonVariants({
@@ -174,7 +161,7 @@ export default async function Tasks() {
             </p>
           </div>
 
-          <img src="/og.png" alt="teaser" className="mx-auto w-full max-w-5xl" />
+          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/og.png`} alt="teaser" className="mx-auto w-full max-w-5xl" />
 
           {/* <div className="mb-6 flex flex-col items-center gap-2">
             <p className="font-mono text-sm">view model performance</p>
@@ -223,7 +210,7 @@ export default async function Tasks() {
           <p>
             Submit your results by opening{" "}
             <a
-              href="https://github.com/zlab-princeton/UEval/issues"
+              href="https://github.com/zlab-princeton/UEval_Benchmark/issues"
               className="text-foreground underline underline-offset-4"
             >
               an issue in our GitHub
